@@ -2,6 +2,7 @@ orbs:
   heroku: circleci/heroku@x.y # Use the Heroku orb in your config
 
 workflows:
+version: 2
   heroku_deploy:
     jobs:
       - build
@@ -12,7 +13,7 @@ workflows:
             branches:
               only: master # only run deploy-via-git job on master branch
 
-
+version: 2
 jobs:
   build:
     working_directory: ~/repo/static
