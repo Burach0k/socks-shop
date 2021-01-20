@@ -1,0 +1,38 @@
+build:
+  docker:
+    - image: circleci/node:10.10.0-stretch-browsers-legacy
+  working_directory: ~/repo/static
+  steps:
+    - checkout
+    - attach_workspace:
+        at: ~/repo/static
+    - run:
+        name: Build
+        command: npm run build
+    - persist_to_workspace:
+        root: .
+        paths:
+          - .next
+
+
+workflows:
+  version: 2
+
+  test-build-deploy:
+    jobs:
+      - npm
+      - lint:
+          requires:
+            - npm
+      - build:
+          requires:
+            - lint
+      - test:
+          requires:
+            - build
+      - deploy-dev:
+          requires:
+            - test
+          filters:
+            branches:
+              only: develop
