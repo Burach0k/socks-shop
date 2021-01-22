@@ -8,6 +8,9 @@ jobs:
           command: >
             echo $TEST
             echo $HEROKU_APP_NAME
+            cd ./static
+            npm install
+            npm run build
             echo "The command above installs Heroku, the command below deploys.
             What you do inbetween is up to you!"
       - heroku/deploy-via-git
