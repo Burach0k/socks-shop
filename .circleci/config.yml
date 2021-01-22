@@ -29,10 +29,11 @@ jobs:
           name: build app
           command: npm run build && ls
       - store_artifacts:
-          path: ./static/build/
+          name: store artifacts
+          path: ./static/dist/
       - persist_to_workspace:
-          root:  ~/repo
-          path: ./static/build/
+          root:  ~/project
+          path: ./static/dist/
       - heroku/deploy-via-git
 orbs:
   heroku: circleci/heroku@1.2.4
