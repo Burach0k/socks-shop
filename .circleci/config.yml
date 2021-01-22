@@ -51,5 +51,6 @@ workflows:
       - deploy:
           context: test
       - heroku/deploy-via-git:
+          context: test
           requires:
             - deploy
