@@ -33,7 +33,7 @@ jobs:
           path: ./static/dist/
       - persist_to_workspace:
           root:  ~/project
-          path: ./static/dist/
+          path: ./static/dist/socks-shop/
       - heroku/deploy-via-git
 orbs:
   heroku: circleci/heroku@1.2.4
