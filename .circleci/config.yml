@@ -6,10 +6,10 @@ jobs:
       - heroku/install
       - run:
           command: >
-            cd ./static &&
-            npm install &&
-            npm run build &&
-            echo "-------------"
+            "cd ./static"
+            "npm install"
+            "npm run build
+            "echo -------------"
       - heroku/deploy-via-git
 orbs:
   heroku: circleci/heroku@1.2.4
