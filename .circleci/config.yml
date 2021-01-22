@@ -24,12 +24,11 @@ jobs:
           path: ./static
           name: Install local dependencies
           command: npm install
-      # Cache local dependencies if they don't exist
-      - save_cache:
+      - run:
           path: ./static
-          key: v1-dependencies-{{ checksum "package-lock.json" }}
-          paths:
-            - node_modules
+          name: Install local dependencies
+          command: npm run build
+      
       - heroku/deploy-via-git
 orbs:
   heroku: circleci/heroku@1.2.4
