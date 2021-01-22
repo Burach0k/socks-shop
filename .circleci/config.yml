@@ -4,14 +4,14 @@ jobs:
     steps:
       - checkout
       - heroku/install
-      - npm_install:
+      - run:
           name: update-npm
           command: sudo npm install -g npm@latest
       - restore_cache:
           path: ./static
           keys:
-          - v1-dependencies-{{ checksum "package-lock.json" }}
-          - v1-dependencies-
+            - v1-dependencies-{{ checksum "package-lock.json" }}
+            - v1-dependencies-
       - run:
           path: ./static
           name: Install local dependencies
