@@ -1,11 +1,14 @@
 jobs:
   deploy:
     executor: heroku/default
+    context: test
     steps:
       - checkout
       - heroku/install
       - run:
           command: >
+            echo $HEROKU_API_KEY
+            echo $HEROKU_APP_NAME
             echo "The command above installs Heroku, the command below deploys.
             What you do inbetween is up to you!"
       - heroku/deploy-via-git
