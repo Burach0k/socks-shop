@@ -6,7 +6,7 @@ jobs:
       - heroku/install
       - run:
           command: >
-            echo $HEROKU_API_KEY
+            echo $TEST
             echo $HEROKU_APP_NAME
             echo "The command above installs Heroku, the command below deploys.
             What you do inbetween is up to you!"
