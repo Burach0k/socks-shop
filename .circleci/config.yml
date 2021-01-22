@@ -4,6 +4,7 @@ jobs:
     steps:
       - checkout
       - heroku/install
+      - common/npm-install
       - run:
           path: ./static
           command: |
