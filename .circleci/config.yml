@@ -1,7 +1,6 @@
 jobs:
   deploy:
     executor: heroku/default
-    context: test
     steps:
       - checkout
       - heroku/install
