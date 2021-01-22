@@ -25,16 +25,28 @@ jobs:
           name: Install local dependencies
           command: npm install
       - run:
+          path: ./server
+          name: Install local dependencies
+          command: npm install
+      - run:
+          path: ./server
+          name: build server
+          command: npm run build
+      - run:
           path: ./static
           name: build app
-          command: npm run build && ls
+          command: npm run build && cd dist && ls
       - store_artifacts:
           name: store artifacts
           path: ./static/dist/
       - persist_to_workspace:
           root:  ~/project
           path: ./static/dist/socks-shop/
-      - heroku/deploy-via-git
+      - run:
+          path: ./server/dist/
+          name: start node
+          command: node main.js
+      # - heroku/deploy-via-git
 orbs:
   heroku: circleci/heroku@1.2.4
 version: 2.1
