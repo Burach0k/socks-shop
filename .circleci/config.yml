@@ -6,13 +6,10 @@ jobs:
       - heroku/install
       - run:
           command: >
-            echo $TEST
-            echo $HEROKU_APP_NAME
             cd ./static
-            npm install
+            npm install &&
             npm run build
-            echo "The command above installs Heroku, the command below deploys.
-            What you do inbetween is up to you!"
+            echo "-------------"
       - heroku/deploy-via-git
 orbs:
   heroku: circleci/heroku@1.2.4
