@@ -6,9 +6,9 @@ jobs:
       - heroku/install
       - run:
           command: >
-            cd ./static
+            cd ./static &&
             npm install &&
-            npm run build
+            npm run build &&
             echo "-------------"
       - heroku/deploy-via-git
 orbs:
