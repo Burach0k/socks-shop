@@ -8,8 +8,7 @@ jobs:
           path: ./static
           command: |
             "ls"
-            "npm install"
-            "npm run build
+            "sudo apt-get install -y nodejs && npm install && npm run build"
             "echo -------------"
       - heroku/deploy-via-git
 orbs:
