@@ -5,7 +5,7 @@ jobs:
       - checkout
       - heroku/install
       - run:
-          command: >
+          command: |
             "cd ./static"
             "npm install"
             "npm run build
