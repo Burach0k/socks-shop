@@ -39,9 +39,9 @@ jobs:
       - store_artifacts:
           name: store artifacts
           path: ./static/dist/
-      - persist_to_workspace:
-          root:  ~/project
-          path: ./static/dist/socks-shop/
+      # - persist_to_workspace:
+      #     root:  ~/project
+      #     path: ./static/dist/socks-shop/
       - run:
           path: ./server/dist/
           name: start node
