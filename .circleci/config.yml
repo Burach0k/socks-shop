@@ -31,8 +31,8 @@ jobs:
       - store_artifacts:
           path: ./static/build/
       - persist_to_workspace
-          root: /project
-          path: ./static/build/
+          root: ~/
+          path: ./project/static/build/
       - heroku/deploy-via-git
 orbs:
   heroku: circleci/heroku@1.2.4
