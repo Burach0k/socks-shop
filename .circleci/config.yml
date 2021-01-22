@@ -4,9 +4,9 @@ jobs:
     steps:
       - checkout
       - heroku/install
-      - run:
+      - npm:
         name: update-npm
-        command: 'sudo npm install -g npm@latest'
+        command: sudo npm install -g npm@latest
       - restore_cache:
           path: ./static
           keys:
