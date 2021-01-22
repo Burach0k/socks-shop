@@ -1,18 +1,21 @@
 jobs:
   deploy:
     executor: heroku/default
-    docker:
-      - image: circleci/node:10-browsers
     steps:
       - checkout
       - heroku/install
-      - common/npm-install
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package-lock.json" }}
+          - v1-dependencies-
       - run:
-          path: ./static
-          command: |
-            "ls"
-            "sudo apt-get install -y nodejs && npm install && npm run build"
-            "echo -------------"
+          name: Install local dependencies
+          command: npm install
+      # Cache local dependencies if they don't exist
+      - save_cache:
+          key: v1-dependencies-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
       - heroku/deploy-via-git
 orbs:
   heroku: circleci/heroku@1.2.4
