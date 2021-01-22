@@ -5,6 +5,9 @@ jobs:
       - checkout
       - heroku/install
       - run:
+          name: update-nodejs
+          command: sudo apt-get install nodejs
+      - run:
           name: update-npm
           command: sudo apt-get install npm
       - restore_cache:
