@@ -26,9 +26,13 @@ jobs:
           command: npm install
       - run:
           path: ./static
-          name: Install local dependencies
-          command: npm run build
-      
+          name: build app
+          command: npm run build && ls
+      - store_artifacts:
+          path: ./static/build/
+      - persist_to_workspace:
+          root: ~/repo
+          path: ./static/build
       - heroku/deploy-via-git
 orbs:
   heroku: circleci/heroku@1.2.4
