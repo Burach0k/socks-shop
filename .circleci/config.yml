@@ -6,7 +6,7 @@ jobs:
       - heroku/install
       - run:
           command: |
-            "ll"
+            "ls"
             "cd ./static"
             "npm install"
             "npm run build
