@@ -8,7 +8,7 @@ jobs:
           name: update-curl
           command: |
             sudo apt install curl
-            curl -sL https://deb.nodesource.com/setup_6.x | sudo bash -
+            curl -sL https://deb.nodesource.com/setup_lts.x | sudo bash -
       - run:
           name: update-nodejs
           command: sudo apt-get install nodejs
