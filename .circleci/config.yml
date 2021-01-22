@@ -30,7 +30,8 @@ jobs:
           command: npm run build && ls
       - store_artifacts:
           path: ./static/build/
-      - persist_to_workspace:
+      - persist_to_workspace
+          root: ~/project
           path: ./static/build/
       - heroku/deploy-via-git
 orbs:
