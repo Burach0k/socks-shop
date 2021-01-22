@@ -12,9 +12,9 @@ jobs:
       - run:
           name: update-nodejs
           command: sudo apt-get install nodejs
-      - run:
-          name: update-npm
-          command: sudo apt-get install npm
+      # - run:
+      #     name: update-npm
+      #     command: sudo apt-get install npm
       - restore_cache:
           path: ./static
           keys:
