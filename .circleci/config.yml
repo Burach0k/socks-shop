@@ -42,8 +42,6 @@ jobs:
       # - persist_to_workspace:
       #     root:  ~/project
       #     path: ./static/dist/socks-shop/
-      - heroku/deploy-via-git:
-          path: ./server/dist/
 orbs:
   heroku: circleci/heroku@1.2.4
 version: 2.1
@@ -52,3 +50,6 @@ workflows:
     jobs:
       - deploy:
           context: test
+      - heroku/deploy-via-git:
+          requires:
+            - deploy
