@@ -7,7 +7,7 @@ jobs:
       - run:
           command: |
             "ls"
-            "cd ./static"
+            "cd static"
             "npm install"
             "npm run build
             "echo -------------"
