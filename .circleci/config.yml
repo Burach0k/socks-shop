@@ -42,11 +42,8 @@ jobs:
       # - persist_to_workspace:
       #     root:  ~/project
       #     path: ./static/dist/socks-shop/
-      - run:
-          name: Deploy Master to Heroku
+      - heroku/deploy-via-git:
           path: ./server/dist/
-          command: ls && git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
-      # - heroku/deploy-via-git
 orbs:
   heroku: circleci/heroku@1.2.4
 version: 2.1
