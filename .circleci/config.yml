@@ -1,6 +1,8 @@
 jobs:
   deploy:
     executor: heroku/default
+    docker:
+      - image: circleci/node:10-browsers
     steps:
       - checkout
       - heroku/install
