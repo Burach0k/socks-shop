@@ -46,6 +46,7 @@ jobs:
           at: ./server/
       - run:
           name: Deploy Master to Heroku
+          root: ./server/
           command: |
             ls
 
