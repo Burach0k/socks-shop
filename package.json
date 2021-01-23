@@ -1,5 +1,5 @@
 {
     "scripts": {
-        "start": "node ./server/dist/main"
+        "start": "cd ./server && npm install && node /dist/main"
     }
 }
