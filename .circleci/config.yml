@@ -48,7 +48,7 @@ jobs:
           command: |
             ls
 
-            CIRCLE_WORKING_DIRECTORY = ~/project/server
+            CIRCLE_WORKING_DIRECTORY="~/project/server"
 
             cd ./server
 
