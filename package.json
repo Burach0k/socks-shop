@@ -1,0 +1,7 @@
+{
+    "scripts": {
+        "build": "nest ./server/build",
+        "start": "nest ./server/start",
+        "start:prod": "node ./server/dist/main"
+    }
+}
