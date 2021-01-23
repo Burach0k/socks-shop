@@ -48,6 +48,8 @@ jobs:
           command: |
             ls
 
+            CIRCLE_WORKING_DIRECTORY = ~/project/server
+
             cd ./server
 
             if false;then
@@ -61,7 +63,7 @@ jobs:
             elif [ -n "$CIRCLE_TAG" ]; then
               git push $force $heroku_url $CIRCLE_TAG^{}:main
             else
-            echo "No branch or tag found."
+              echo "No branch or tag found."
               exit 1
             fi
 
