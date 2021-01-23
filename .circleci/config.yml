@@ -46,6 +46,8 @@ jobs:
           name: Deploy Master to Heroku
           path: ./server
           command: |
+            ls
+
             if false;then
               force="-f"
             fi
