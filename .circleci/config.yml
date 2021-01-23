@@ -42,13 +42,25 @@ jobs:
       # - persist_to_workspace:
       #     root:  ~/project
       #     path: ./static/dist/socks-shop/
-      # - run:
-      #     name: Deploy Master to Heroku
-      #     path: ./server/dist
-      #     command: |
-      #       git add -f .
-      #       git commit -m "SADASD"
-      #       git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
+      - run:
+          name: Deploy Master to Heroku
+          path: ./server
+          command: |
+            if false;then
+              force="-f"
+            fi
+
+            heroku_url="https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git"
+
+            if [ -n "$CIRCLE_BRANCH" ]; then
+              git push $force $heroku_url $CIRCLE_BRANCH:main
+            elif [ -n "$CIRCLE_TAG" ]; then
+              git push $force $heroku_url $CIRCLE_TAG^{}:main
+            else
+            echo "No branch or tag found."
+              exit 1
+            fi
+
 orbs:
   heroku: circleci/heroku@1.2.4
 version: 2.1
@@ -57,7 +69,7 @@ workflows:
     jobs:
       - deploy:
           context: test
-      - heroku/deploy-via-git:
-          context: test
-          requires:
-            - deploy
+      # - heroku/deploy-via-git:
+      #     context: test
+      #     requires:
+      #       - deploy
