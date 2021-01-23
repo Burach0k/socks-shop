@@ -42,13 +42,13 @@ jobs:
       # - persist_to_workspace:
       #     root:  ~/project
       #     path: ./static/dist/socks-shop/
-      - attach_workspace:
-          at: ./server/
       - run:
           name: Deploy Master to Heroku
           root: ./server/
           command: |
             ls
+
+            cd ./server
 
             if false;then
               force="-f"
