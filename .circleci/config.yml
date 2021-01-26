@@ -46,8 +46,8 @@ jobs:
           name: Deploy Master to Heroku
           root: ./server/
           command: |
-            git add ./server/dist
-            git add ./static/dist
+            git add -f ./server/dist
+            git add -f ./static/dist
             git commit -m "ASDSAD"
             
 
