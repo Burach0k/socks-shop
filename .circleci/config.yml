@@ -46,11 +46,10 @@ jobs:
           name: Deploy Master to Heroku
           root: ./server/
           command: |
-            ls
-
-            CIRCLE_WORKING_DIRECTORY="~/project/server"
-
-            cd ./server
+            git add ./server/dist
+            git add ./static/dist
+            git commit -m "ASDSAD"
+            
 
             if false;then
               force="-f"
