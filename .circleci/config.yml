@@ -46,7 +46,6 @@ jobs:
           name: Deploy Master to Heroku
           root: ./server/
           command: |
-            export URI=$URL
             git config --global user.email "$EMAIL"
             git config --global user.name "$NAME"
 
