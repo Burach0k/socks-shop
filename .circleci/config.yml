@@ -5,16 +5,17 @@ jobs:
       - checkout
       - heroku/install
       - run:
-          name: install curl
+          name: Install curl
           command: |
             sudo apt install curl
             curl -sL https://deb.nodesource.com/setup_lts.x | sudo bash -
       - run:
-          name: install nodejs
+          name: Install nodejs
           command: sudo apt-get install nodejs
       - run:
-          name: install global typeScrypt
-          command: npm i typescript
+          name: Install global typeScrypt
+          command: |
+            sudo npm install -g typescript
       - run:
           path: ./static
           name: Install local dependencies for frontend
@@ -25,11 +26,11 @@ jobs:
           command: npm install
       - run:
           path: ./server
-          name: build backend 
+          name: Build backend
           command: tsc -p tsconfig.build.json && cp package.json ./dist && cd ./dist && npm i --production --parseable && rm package.json && rm package-lock.json
       - run:
           path: ./static
-          name: build frontend
+          name: Build frontend
           command: npm run build
       # - store_artifacts:
       #     name: store artifacts
