@@ -5,40 +5,35 @@ jobs:
       - checkout
       - heroku/install
       - run:
-          name: update-curl
+          name: install curl
           command: |
             sudo apt install curl
             curl -sL https://deb.nodesource.com/setup_lts.x | sudo bash -
       - run:
-          name: update-nodejs
+          name: install nodejs
           command: sudo apt-get install nodejs
-      # - run:
-      #     name: update-npm
-      #     command: sudo apt-get install npm
-      # - restore_cache:
-      #     path: ./static
-      #     keys:
-      #       - v1-dependencies-{{ checksum "package-lock.json" }}
-      #       - v1-dependencies-
+      - run:
+          name: install global typeScrypt
+          command: npm i -g typescript
       - run:
           path: ./static
-          name: Install local dependencies
+          name: Install local dependencies for frontend
           command: npm install
       - run:
           path: ./server
-          name: Install local dependencies
+          name: Install local dependencies for backend
           command: npm install
       - run:
           path: ./server
-          name: build server
+          name: build backend 
           command: tsc -p tsconfig.build.json && cp package.json ./dist && cd ./dist && npm i --production --parseable && rm package.json && rm package-lock.json
       - run:
           path: ./static
-          name: build app
+          name: build frontend
           command: npm run build
-      - store_artifacts:
-          name: store artifacts
-          path: ./static/dist
+      # - store_artifacts:
+      #     name: store artifacts
+      #     path: ./static/dist
       # - persist_to_workspace:
       #     root:  ~/project
       #     path: ./static/dist/socks-shop/
