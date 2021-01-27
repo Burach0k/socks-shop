@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "socks-shop"
+  "defaultProject": "socks-shop",
+  "cli": {
+    "analytics": "7d7715c8-b968-40eb-997b-704bed59c92b"
+  }
 }
