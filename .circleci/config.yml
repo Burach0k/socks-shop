@@ -51,6 +51,7 @@ jobs:
 
             git add -f ./server/dist
             git add -f ./static/dist
+            git add -f package.json
             git commit -m "ASDSAD"
 
             heroku_url="https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git"
