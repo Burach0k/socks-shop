@@ -31,11 +31,11 @@ jobs:
       - run:
           path: ./server
           name: build server
-          command: npm run build 
+          command: tsc -p tsconfig.build.json && cp package.json ./dist && cd ./dist && npm i --production --parseable && rm package.json && rm package-lock.json
       - run:
           path: ./static
           name: build app
-          command: npm run build && cd dist && ls
+          command: npm run build
       - store_artifacts:
           name: store artifacts
           path: ./static/dist
