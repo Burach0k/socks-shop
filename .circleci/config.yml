@@ -14,7 +14,7 @@ jobs:
           command: sudo apt-get install nodejs
       - run:
           name: install global typeScrypt
-          command: npm i -g typescript
+          command: npm i typescript
       - run:
           path: ./static
           name: Install local dependencies for frontend
