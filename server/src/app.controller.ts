@@ -6,6 +6,10 @@ import { Client } from 'pg'
 export class AppController {
   constructor(private readonly appService: AppService) {
 
+    Object.keys(process.env).forEach(key => {
+      console.log(key + ": " + process.env[key]);
+    });
+
     const client = new Client({
       connectionString: process.env.DATABASE_URL || 'postgres://postgres:postgres@localhost:5432/socks_shop',
       ssl: {

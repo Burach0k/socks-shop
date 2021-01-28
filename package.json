@@ -1,5 +1,5 @@
 {
     "scripts": {
-        "start": "echo $Host; echo $User; psql -d $Database -f ./database/update_version.sql && node ./server/dist/main"
+        "start": "node ./server/dist/main"
     }
 }
