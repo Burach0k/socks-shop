@@ -1,8 +1,5 @@
 {
     "scripts": {
-        "init": "echo $port; echo $host; echo $username",
-        "run:psql": "cat ./database/update_version.sql | heroku pg:psql",
-        "run:server": "node ./server/dist/main",
-        "start": "npm run init && npm run run:psql && run:server"
+        "start": "node ./server/dist/main"
     }
 }
