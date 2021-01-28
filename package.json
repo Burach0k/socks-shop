@@ -1,6 +1,8 @@
 {
     "scripts": {
+        "init": "echo port; echo host; echo username",
         "run:psql": "psql -h host -p port -d dbname -U username -f ./database/update_version.sql",
-        "start": "npm run run:psql && node ./server/dist/main"
+        "run:server": "node ./server/dist/main",
+        "start": "npm run init && npm run run:psql && run:server"
     }
 }
