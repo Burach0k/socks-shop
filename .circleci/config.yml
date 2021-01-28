@@ -34,7 +34,7 @@ jobs:
           command: npm run build:prod
       - run:
           name: Execute sql script
-          command: cat ./database/update_version.sql | heroku pg:psql --app $HEROKU_APP_NAME
+          command: sudo apt-get install postgresql && cat ./database/update_version.sql | heroku pg:psql --app $HEROKU_APP_NAME
       - run:
           name: Deploy Master to Heroku
           root: ./server/
