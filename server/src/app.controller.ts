@@ -7,7 +7,7 @@ export class AppController {
   constructor(private readonly appService: AppService) {
 
     const client = new Client({
-      connectionString: process.env.DATABASE_URL,
+      connectionString: process.env.DATABASE_URL || 'postgres://postgres:postgres@localhost:5432/socks_shop',
       ssl: {
         rejectUnauthorized: false
       }
@@ -15,9 +15,9 @@ export class AppController {
 
     client.connect();
 
-    client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
+    client.query('SELECT * FROM USERS;', (err, res) => {
       if (err) throw err;
-      console.log('jepa');
+      console.log(res);
       client.end();
     });
 
