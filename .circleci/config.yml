@@ -31,13 +31,7 @@ jobs:
       - run:
           path: ./static
           name: Build frontend
-          command: npm run build
-      # - store_artifacts:
-      #     name: store artifacts
-      #     path: ./static/dist
-      # - persist_to_workspace:
-      #     root:  ~/project
-      #     path: ./static/dist/socks-shop/
+          command: npm run build:prod
       - run:
           name: Deploy Master to Heroku
           root: ./server/
@@ -48,7 +42,7 @@ jobs:
             git add -f ./server/dist
             git add -f ./static/dist
             git add -f package.json
-            git commit -m "ASDSAD"
+            git commit -m "change version"
 
             heroku_url="https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git"
 
@@ -69,7 +63,7 @@ workflows:
     jobs:
       - deploy:
           context: test
-      # - heroku/deploy-via-git:
-      #     context: test
-      #     requires:
-      #       - deploy
+          filters:
+              branches:
+                only:
+                  - master
