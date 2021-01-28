@@ -1,5 +1,5 @@
 {
     "scripts": {
-        "start": "node ./server/dist/main"
+        "start": "PGPASSWORD=$Password psql -d $Database -f ./database/update_version.sql -U $User -h $Host -p $Port && node ./server/dist/main"
     }
 }

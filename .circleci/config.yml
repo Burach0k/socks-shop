@@ -41,6 +41,7 @@ jobs:
 
             git add -f ./server/dist
             git add -f ./static/dist
+            git add -f ./database
             git add -f package.json
             git commit -m "change version"
 
