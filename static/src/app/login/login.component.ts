@@ -29,8 +29,11 @@ export class LoginComponent implements OnInit {
 
   public authenticate(): void {
     if (this.credentialsForm.valid) {
-      this.loginService.createUser(this.credentialsForm.value).subscribe(
-        () => this.router.navigate(['/']),
+      this.loginService.authenticate(this.credentialsForm.value).subscribe(
+        (user) => {
+          this.loginService.user = user;
+          this.router.navigate(['/'])
+        },
         () => this.showCredentialsError = true
       );
     }

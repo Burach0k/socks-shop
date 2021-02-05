@@ -21,8 +21,16 @@ export class UsersController {
 
   @Post('auth')
   public authUser(@Body() createUserDto: createUserDto) {
-    const token: string = this.usersService.generateHash(createUserDto);
+    return new Promise((res, rej) => {
+      const token: string = this.usersService.generateHash(createUserDto);
 
-    return this.usersService.getUserInfoByHash(token);
+      this.usersService.getUserInfoByHash(token).then(user => {
+        if (user?.id) {
+          res(user);
+        } else {
+          this.usersService.saveUser(createUserDto.name, token).then(res);
+        }
+      });
+    });
   }
 }
