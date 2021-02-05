@@ -9,4 +9,8 @@ export class DataBase {
       rejectUnauthorized: false,
     },
   });
+
+  public static parseArray(stringArray: string): any[] {
+    return stringArray.slice(1, stringArray.length - 1).split(',');
+  }
 }

@@ -17,11 +17,14 @@ export class UsersService {
 
     public getUserInfo(id: number): Promise<UsersDto> {
         return new Promise((responce, reject) => {
-            DataBase.client.query(`SELECT id, name, rolse FROM USERS WHERE id = ${id} LIMIT 1;`, (err, res) => {
+            DataBase.client.query(`SELECT id, name, roles FROM USERS WHERE id = ${id} LIMIT 1;`, (err, res) => {
                 if (err) {
                     reject(err);
                     return;
                 }
+
+                const result = res.rows[0];
+                result.roles = DataBase.parseArray(result.roles);
 
                 responce(res.rows[0]);
             });
@@ -30,23 +33,29 @@ export class UsersService {
 
     public getUserInfoByHash(hash: string): Promise<UsersDto> {
         return new Promise((responce, reject) => {
-            DataBase.client.query(`SELECT id, name, rolse FROM USERS WHERE hash = ${hash} LIMIT 1;`, (err, res) => {
+            DataBase.client.query(`SELECT id, name, roles FROM USERS WHERE hash = '${hash}' LIMIT 1;`, (err, res) => {
                 if (err) {
                     reject(err);
                     return;
                 }
 
-                responce(res.rows[0]);
+                const result = res.rows[0];
+
+                if (result) {
+                    result.roles = DataBase.parseArray(result.roles);
+                }
+
+                responce(result);
             });
         });
     }
 
-    public saveUser(name: string, hash: string): Promise<true> {
+    public saveUser(name: string, hash: string): Promise<UsersDto> {
         return new Promise((responce, reject) => {
             DataBase.client.query(`INSERT INTO USERS (name, hash, roles) VALUES ('${name}', '${hash}', '{"client"}');`, (err, res) => {
                 if (err) reject(err);
 
-                responce(true);
+                this.getUserInfoByHash(hash).then(responce);
             });
         });
     }
