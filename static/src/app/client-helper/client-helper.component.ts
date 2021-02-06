@@ -61,7 +61,7 @@ export class ClientHelperComponent implements OnInit {
       console.log("Получены данные " + event.data);
     };
     
-    socket.onerror = function(error) {
+    socket.onerror = function(error: any) {
       console.log("Ошибка " + error.message);
     };
 
