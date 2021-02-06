@@ -74,3 +74,4 @@ workflows:
               branches:
                 only:
                   - main
+                  - client-helper

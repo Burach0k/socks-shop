@@ -1,0 +1,31 @@
+<div [class]="chatIconClass">
+    <p class="helper-text-container">
+        {{textDialog}}
+    </p>
+
+    <div *ngIf="chatIconClass === 'hello'">
+        <button (click)="nextChatStatus()">Yes</button>
+        <button (click)="closeChat()">No</button>
+    </div>
+
+    <div *ngIf="chatIconClass === 'choose'">
+        <button (click)="sendMessageOnTG()">Chat</button>
+        <button>Video call</button>
+        <button (click)="sendEmail()" >Email</button>
+    </div>
+
+    <div *ngIf="chatIconClass === 'email'">
+        <input [(ngModel)]="email"/>
+        <textarea [(ngModel)]="message" ></textarea>
+        <button (click)="sendMessageOnEmail()">Sent</button>
+    </div>
+
+    <div *ngIf="chatIconClass === 'tg-message'">
+        <textarea [(ngModel)]="message" ></textarea>
+        <button (click)="sendMessageOnEmail()">Sent</button>
+    </div>
+
+    <img src="assets/chat.svg" />
+</div>
+
+<img *ngIf="chatIconClass !== 'close'" src="assets/assistent.png" />

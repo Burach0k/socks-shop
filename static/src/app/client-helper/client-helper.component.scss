@@ -1,0 +1,166 @@
+:host {
+    position: fixed;
+    bottom: -5px;
+    right: -20px;
+
+    img {
+        width: 240px;
+    }
+
+    .helper-text-container {
+        position: absolute;
+        width: 160px;
+        height: auto;
+    }
+
+    .hello {
+        img {
+            left: -157px;
+            position: absolute;
+            top: -141px;
+            width: 196px;
+            z-index: 5;
+        }
+
+        div {
+            z-index: 100;
+            left: -120px;
+            position: absolute;
+            top: -33px;
+            width: 125px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        p {
+            position: absolute;
+            width: 160px;
+            height: auto;
+            top: -83px;
+            left: -132px;
+        }
+    }
+
+
+    .choose {
+        img {
+            left: -182px;
+            position: absolute;
+            top: -169px;
+            width: 223px;
+            z-index: 5;
+        }
+
+        div {
+            z-index: 100;
+            left: -130px;
+            position: absolute;
+            top: -63px;
+            width: 125px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+
+        p {
+            position: absolute;
+            width: 140px;
+            height: auto;
+            top: -125px;
+            left: -141px;
+            text-align: center;
+        }
+    }
+
+    .email {
+        img {
+            left: -195px;
+            position: absolute;
+            top: -183px;
+            width: 240px;
+            z-index: 5;
+        }
+
+        div {
+            z-index: 100;
+            left: -151px;
+            position: absolute;
+            top: -67px;
+            width: 160px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+
+        p {
+            position: absolute;
+            width: 154px;
+            height: auto;
+            top: -160px;
+            left: -152px;
+            text-align: center;
+        }
+    }
+
+    .send-email {
+        img {
+            left: -157px;
+            position: absolute;
+            top: -141px;
+            width: 196px;
+            z-index: 5;
+        }
+
+        div {
+            z-index: 100;
+            left: -120px;
+            position: absolute;
+            top: -33px;
+            width: 125px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        p {
+            position: absolute;
+            width: 160px;
+            height: auto;
+            top: -90px;
+            left: -137px;
+            text-align: center;
+        }
+    }
+
+    .tg-message {
+        img {
+            left: -157px;
+            position: absolute;
+            top: -141px;
+            width: 196px;
+            z-index: 5;
+        }
+
+        div {
+            z-index: 100;
+            left: -120px;
+            position: absolute;
+            top: -33px;
+            width: 125px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        p {
+            position: absolute;
+            width: 160px;
+            height: auto;
+            top: -90px;
+            left: -137px;
+            text-align: center;
+        }
+    }
+
+    .close {
+        display: none;
+    }
+}
