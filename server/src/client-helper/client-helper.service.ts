@@ -5,8 +5,8 @@ import { SendEmail } from 'src/db/client-helper';
 
 @Injectable()
 export class ClientHelperService {
-    
-    private emailTransporter = nodemailer.createTransport({
+
+    private readonly emailTransporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
             user: process.env.EMAIL_NAME,
