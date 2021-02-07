@@ -10,6 +10,7 @@ export class ClientHelperComponent implements OnInit {
   public email: string = "";
   public message: string = "";
   public socket: any;
+  public chatStackMessage: { name: 'you' | 'helper', message: string, time: number }[] = [];
 
   private readonly chatStatus = {
     hello: {
@@ -58,8 +59,12 @@ export class ClientHelperComponent implements OnInit {
       console.log('Код: ' + event.code + ' причина: ' + event.reason);
     };
     
-    this.socket.onmessage = function(event: any) {
-      console.log("Получены данные " + event.data);
+    this.socket.onmessage = (event: any) => {
+      this.chatStackMessage.push({
+        name: 'helper',
+        message: event.data,
+        time: new Date().getTime(),
+      });
     };
     
     this.socket.onerror = function(error: any) {
@@ -68,6 +73,11 @@ export class ClientHelperComponent implements OnInit {
   }
 
   public sendMessageOnTG(): void {
+    this.chatStackMessage.push({
+      name: 'you',
+      message: this.message,
+      time: new Date().getTime(),
+    });
     this.socket.send(this.message);
   }
 

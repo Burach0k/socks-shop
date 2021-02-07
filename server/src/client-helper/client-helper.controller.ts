@@ -43,9 +43,6 @@ export class ClientHelperController {
       try {
         if (sendEmail.message.reply_to_message) {
           const userId: number = +sendEmail.message.reply_to_message.text.split("\n")[0].split(":")[1];
-          console.log(userId, '<=========');
-          console.log(sendEmail.message.reply_to_message, '<----------');
-  
           const userInStack = this.stackConnection.find((userData) => userData.id === userId);
           userInStack.reqMessage.next(sendEmail.message.text);
         } 
@@ -58,6 +55,6 @@ export class ClientHelperController {
 
   @Post('send-email')
   public createUser(@Body() sendEmail: SendEmail) {
-      return this.clientHelperService.sendMessageOnEmail(sendEmail);
+    return this.clientHelperService.sendMessageOnEmail(sendEmail);
   }
 }
