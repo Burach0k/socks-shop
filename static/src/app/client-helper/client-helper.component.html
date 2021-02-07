@@ -9,7 +9,7 @@
     </div>
 
     <div *ngIf="chatIconClass === 'choose'">
-        <button (click)="sendMessageOnTG()">Chat</button>
+        <button (click)="chooseChat()">Chat</button>
         <button>Video call</button>
         <button (click)="sendEmail()" >Email</button>
     </div>
@@ -22,7 +22,7 @@
 
     <div *ngIf="chatIconClass === 'tg-message'">
         <textarea [(ngModel)]="message" ></textarea>
-        <button (click)="sendMessageOnEmail()">Sent</button>
+        <button (click)="sendMessageOnTG()">Sent</button>
     </div>
 
     <img src="assets/chat.svg" />

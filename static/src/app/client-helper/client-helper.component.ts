@@ -47,10 +47,12 @@ export class ClientHelperComponent implements OnInit {
     this.textDialog = this.chatStatus.hello.text;
   }
 
-  public sendMessageOnTG(): void {
+  public chooseChat(): void {
     this.chatIconClass = this.chatStatus.tgMessage.class;
     this.textDialog = this.chatStatus.tgMessage.text;
+  }
 
+  public sendMessageOnTG(): void {
     const socket = new WebSocket('wss://stormy-lowlands-69400.herokuapp.com');
 
     socket.onclose = function(event) {
