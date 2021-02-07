@@ -1,5 +1,4 @@
 import { Body, Controller, HttpService, Post } from '@nestjs/common';
-// import * as ws from 'ws';
 import { Subject } from 'rxjs';
 
 import { SendEmail, TGSendMessage } from 'src/db/client-helper';
@@ -20,18 +19,18 @@ export class ClientHelperController {
 
       wss.on('connection', (connection) => {
         const id: number = this.stackConnection.length + 1;
-        console.log('connection <----------')
-      
         this.stackConnection.push({ id, reqMessage: new Subject<any>() });
-      
+
         connection.on('message', (message: any) => {
-          const userId = +"id:" + id + '/n';
-        
+          const userId = "id: " + id + '/n';
+
           httpService.post(`${this.tgUrl}${this.tgtoken}/sendMessage`, {
             chat_id: this.chat_id,
             text: userId + message.data,
-          }).subscribe(() => {
+          }).subscribe((a) => {
             const userInStack = this.stackConnection.find((userData) => userData.id === id);
+            console.log(userInStack, this.stackConnection, id);
+            console.log(a)
             userInStack.reqMessage.subscribe((message) => connection.send(message));
           })
         });
