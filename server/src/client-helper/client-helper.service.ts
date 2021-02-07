@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-const nodemailer = require('nodemailer'); //?
+import * as nodemailer from 'nodemailer';
 
 import { SendEmail } from 'src/db/client-helper';
 

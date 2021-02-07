@@ -2,7 +2,7 @@ import { Body, Controller, HttpService, Post } from '@nestjs/common';
 
 import { SendEmail } from 'src/db/client-helper';
 import { ClientHelperService } from './client-helper.service';
-const ws = require('ws');
+import * as ws from 'ws';
 
 @Controller('client-helper')
 export class ClientHelperController {
