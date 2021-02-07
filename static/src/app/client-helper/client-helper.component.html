@@ -21,7 +21,7 @@
     </div>
 
     <div *ngIf="chatIconClass === 'tg-message'" style="max-height: 400px; overflow-y: scroll;">
-        <p *ngFor="let messager of chatStackMessage" [class]="messager.name === 'helper' : 'helper-text' : 'client-text'">
+        <p *ngFor="let messager of chatStackMessage" [class]="messager.name === 'helper' ? 'helper-text' : 'client-text'">
             <b>{{messager.name}}</b>: {{messager.message}}
         </p>
         <textarea [(ngModel)]="message" ></textarea>
