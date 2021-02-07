@@ -1,36 +1,40 @@
 import { Body, Controller, HttpService, Post } from '@nestjs/common';
-import * as ws from 'ws';
+// import * as ws from 'ws';
 import { Subject } from 'rxjs';
 
 import { SendEmail, TGSendMessage } from 'src/db/client-helper';
 import { ClientHelperService } from './client-helper.service';
+import { AppWebsocket } from '../websocket';
 
 @Controller('client-helper')
 export class ClientHelperController {
-  public wss = new ws.Server({noServer: true, port: 9000 });
+  public wss = AppWebsocket.wss;
   public stackConnection: { id: number, reqMessage: Subject<any> }[] = [];
   public readonly tgUrl: string = 'https://api.telegram.org/bot';
   public readonly tgtoken: string = process.env.TG_BOT_TOKEN;
   public readonly chat_id: string = process.env.TG_CHAT_ID;
 
   constructor(private clientHelperService: ClientHelperService, private httpService: HttpService) {
-    console.log('constructor <----------', process.env.PORT || 3000)
-    this.wss.on('connection', (connection) => {
-      const id: number = this.stackConnection.length + 1;
-      console.log('connection <----------')
 
-      this.stackConnection.push({ id, reqMessage: new Subject<any>() });
+    AppWebsocket.onconnect.subscribe((wss) => {
 
-      connection.on('message', (message: any) => {
-        const userId = +"id:" + id + '/n';
-
-        httpService.post(`${this.tgUrl}${this.tgtoken}/sendMessage`, {
+      wss.on('connection', (connection) => {
+        const id: number = this.stackConnection.length + 1;
+        console.log('connection <----------')
+      
+        this.stackConnection.push({ id, reqMessage: new Subject<any>() });
+      
+        connection.on('message', (message: any) => {
+          const userId = +"id:" + id + '/n';
+        
+          httpService.post(`${this.tgUrl}${this.tgtoken}/sendMessage`, {
             chat_id: this.chat_id,
             text: userId + message.data,
-        }).subscribe(() => {
-          const userInStack = this.stackConnection.find((userData) => userData.id === id);
-          userInStack.reqMessage.subscribe((message) => connection.send(message));
-        })
+          }).subscribe(() => {
+            const userInStack = this.stackConnection.find((userData) => userData.id === id);
+            userInStack.reqMessage.subscribe((message) => connection.send(message));
+          })
+        });
       });
     });
   }
