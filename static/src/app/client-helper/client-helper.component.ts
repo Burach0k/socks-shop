@@ -9,6 +9,7 @@ import { ClientHelperService } from './client-helper.service';
 export class ClientHelperComponent implements OnInit {
   public email: string = "";
   public message: string = "";
+  public socket: any;
 
   private readonly chatStatus = {
     hello: {
@@ -50,24 +51,24 @@ export class ClientHelperComponent implements OnInit {
   public chooseChat(): void {
     this.chatIconClass = this.chatStatus.tgMessage.class;
     this.textDialog = this.chatStatus.tgMessage.text;
-  }
 
-  public sendMessageOnTG(): void {
-    const socket = new WebSocket('wss://stormy-lowlands-69400.herokuapp.com');
+    this.socket = new WebSocket('wss://stormy-lowlands-69400.herokuapp.com');
 
-    socket.onclose = function(event) {
+    this.socket.onclose = function(event: any) {
       console.log('Код: ' + event.code + ' причина: ' + event.reason);
     };
     
-    socket.onmessage = function(event) {
+    this.socket.onmessage = function(event: any) {
       console.log("Получены данные " + event.data);
     };
     
-    socket.onerror = function(error: any) {
+    this.socket.onerror = function(error: any) {
       console.log("Ошибка " + error.message);
     };
+  }
 
-    socket.send(this.message);
+  public sendMessageOnTG(): void {
+    this.socket.send(this.message);
   }
 
   public closeChat(): void {
