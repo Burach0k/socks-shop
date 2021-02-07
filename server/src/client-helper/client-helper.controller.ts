@@ -40,16 +40,19 @@ export class ClientHelperController {
   public updateMessage(@Body() sendEmail: TGSendMessage) {
     console.log(sendEmail);
     return new Promise((res, rej) => {
-      if (sendEmail.message.reply_to_message) {
-        const userId: number = +sendEmail.message.reply_to_message.text.split("\n")[0].split(":")[1];
-        console.log(userId, '<=========');
-        console.log(sendEmail.message.reply_to_message, '<----------');
-
-        const userInStack = this.stackConnection.find((userData) => userData.id === userId);
-        userInStack.reqMessage.next(sendEmail.message.text);
+      try {
+        if (sendEmail.message.reply_to_message) {
+          const userId: number = +sendEmail.message.reply_to_message.text.split("\n")[0].split(":")[1];
+          console.log(userId, '<=========');
+          console.log(sendEmail.message.reply_to_message, '<----------');
+  
+          const userInStack = this.stackConnection.find((userData) => userData.id === userId);
+          userInStack.reqMessage.next(sendEmail.message.text);
+        } 
+        res(true);
+      } catch (error) {
+        res(true);
       }
-
-      res(true);
     });
   }
 
