@@ -14,9 +14,10 @@ export class ClientHelperController {
   public readonly chat_id: string = process.env.TG_CHAT_ID;
 
   constructor(private clientHelperService: ClientHelperService, private httpService: HttpService) {
-
+    console.log('constructor <----------')
     this.wss.on('connection', (connection) => {
       const id: number = this.stackConnection.length + 1;
+      console.log('connection <----------')
 
       this.stackConnection.push({ id, reqMessage: new Subject<any>() });
 
