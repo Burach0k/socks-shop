@@ -7,7 +7,7 @@ import { ClientHelperService } from './client-helper.service';
 
 @Controller('client-helper')
 export class ClientHelperController {
-  public wss = new ws.Server({noServer: true, port: 9000 });
+  public wss = new ws.Server({noServer: true, port: 9000, path: '/client-helper/chat' });
   public stackConnection: { id: number, reqMessage: Subject<any> }[] = [];
   public readonly tgUrl: string = 'https://api.telegram.org/bot';
   public readonly tgtoken: string = process.env.TG_BOT_TOKEN;
