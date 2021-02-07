@@ -22,15 +22,13 @@ export class ClientHelperController {
         this.stackConnection.push({ id, reqMessage: new Subject<any>() });
 
         connection.on('message', (message: any) => {
-          const userId = "id: " + id + '/n';
+          const userId = "id: " + id + '\n';
 
           httpService.post(`${this.tgUrl}${this.tgtoken}/sendMessage`, {
             chat_id: this.chat_id,
             text: userId + message.data,
-          }).subscribe((a) => {
+          }).subscribe(() => {
             const userInStack = this.stackConnection.find((userData) => userData.id === id);
-            console.log(userInStack, this.stackConnection, id);
-            console.log(a)
             userInStack.reqMessage.subscribe((message) => connection.send(message));
           })
         });
@@ -43,7 +41,9 @@ export class ClientHelperController {
     console.log(sendEmail);
     return new Promise((res, rej) => {
       if (sendEmail.message.reply_to_message) {
-        const userId: number = +sendEmail.message.reply_to_message.text.split("/n")[0].split(":")[1];
+        const userId: number = +sendEmail.message.reply_to_message.text.split("\n")[0].split(":")[1];
+        console.log(userId, '<=========');
+        console.log(sendEmail.message.reply_to_message, '<----------');
 
         const userInStack = this.stackConnection.find((userData) => userData.id === userId);
         userInStack.reqMessage.next(sendEmail.message.text);
