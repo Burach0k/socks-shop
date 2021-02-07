@@ -14,14 +14,14 @@ export class ClientHelperController {
 
   constructor(private clientHelperService: ClientHelperService, private httpService: HttpService) {
 
-    this.wss.onconnection = (connection) => {
-      connection.onmessage = (message) => {
+    this.wss.on('connection', (connection) => {
+      connection.on('message', (message: any) => {
         httpService.post(`${this.tgUrl}${this.tgtoken}/sendMessage`, {
             chat_id: this.chat_id,
             text: message.data,
         }).subscribe(() => {})
-      };
-    };
+      });
+    });
   }
 
   @Post('updateMessage')
