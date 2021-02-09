@@ -20,10 +20,12 @@
         <button (click)="sendMessageOnEmail()">Sent</button>
     </div>
 
-    <div *ngIf="chatIconClass === 'tg-message'" style="max-height: 400px; overflow-y: scroll;">
-        <p *ngFor="let messager of chatStackMessage" [class]="messager.name === 'helper' ? 'helper-text' : 'client-text'">
-            <b>{{messager.name}}</b>: {{messager.message}}
-        </p>
+    <div *ngIf="chatIconClass === 'tg-message'" >
+        <div class="messagers-container">
+            <p *ngFor="let messager of chatStackMessage" [class]="messager.name === 'helper' ? 'helper-text' : 'client-text'">
+                <b>{{messager.name}}</b>: {{messager.message}}
+            </p>
+        </div>
         <textarea [(ngModel)]="message" ></textarea>
         <button (click)="sendMessageOnTG()">Sent</button>
     </div>

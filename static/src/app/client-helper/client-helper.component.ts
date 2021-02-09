@@ -34,7 +34,7 @@ export class ClientHelperComponent implements OnInit {
       class: 'send-email'
     },
     tgMessage: {
-      text: "-----------",
+      text: "",
       class: 'tg-message'
     }
   };
@@ -78,6 +78,7 @@ export class ClientHelperComponent implements OnInit {
       message: this.message,
       time: new Date().getTime(),
     });
+
     this.socket.send(this.message);
   }
 

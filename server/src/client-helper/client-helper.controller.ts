@@ -1,5 +1,6 @@
 import { Body, Controller, HttpService, Post } from '@nestjs/common';
 import { Subject } from 'rxjs';
+import { v4 as uuidv4 } from 'uuid';
 
 import { SendEmail, TGSendMessage } from 'src/db/client-helper';
 import { ClientHelperService } from './client-helper.service';
@@ -8,7 +9,7 @@ import { AppWebsocket } from '../websocket';
 @Controller('client-helper')
 export class ClientHelperController {
   public wss = AppWebsocket.wss;
-  public stackConnection: { id: number, reqMessage: Subject<any> }[] = [];
+  public stackConnection: { id: string, reqMessage: Subject<any> }[] = [];
   public readonly tgUrl: string = 'https://api.telegram.org/bot';
   public readonly tgtoken: string = process.env.TG_BOT_TOKEN;
   public readonly chat_id: string = process.env.TG_CHAT_ID;
@@ -18,11 +19,12 @@ export class ClientHelperController {
     AppWebsocket.onconnect.subscribe((wss) => {
 
       wss.on('connection', (connection) => {
-        const id: number = this.stackConnection.length + 1;
+        const id: string = uuidv4();
         this.stackConnection.push({ id, reqMessage: new Subject<any>() });
 
         connection.on('message', (message: any) => {
-          const userId = "id: " + id + '\n';
+          const userId: string =  `id: ${id}\n`;
+          console.log(userId, message);
 
           httpService.post(`${this.tgUrl}${this.tgtoken}/sendMessage`, {
             chat_id: this.chat_id,
@@ -31,6 +33,12 @@ export class ClientHelperController {
             const userInStack = this.stackConnection.find((userData) => userData.id === id);
             userInStack.reqMessage.subscribe((message) => connection.send(message));
           })
+        });
+
+        connection.on('close', () => {
+          const userIndexInStack: number = this.stackConnection.findIndex((userData) => userData.id === id);
+          this.stackConnection[userIndexInStack].reqMessage.unsubscribe();
+          this.stackConnection.splice(userIndexInStack, 1);
         });
       });
     });
@@ -42,7 +50,7 @@ export class ClientHelperController {
     return new Promise((res, rej) => {
       try {
         if (sendEmail.message.reply_to_message) {
-          const userId: number = +sendEmail.message.reply_to_message.text.split("\n")[0].split(":")[1];
+          const userId: string = sendEmail.message.reply_to_message.text.split("\n")[0].split(":")[1];
           const userInStack = this.stackConnection.find((userData) => userData.id === userId);
           userInStack.reqMessage.next(sendEmail.message.text);
         } 

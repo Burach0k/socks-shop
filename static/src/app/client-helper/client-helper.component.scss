@@ -146,8 +146,6 @@
             position: absolute;
             top: -93px;
             max-height: 235px;
-            overflow-y: auto;
-            overflow-x: hidden;
             display: inline-block;
             width: 173px;
         }
@@ -162,22 +160,34 @@
         }
 
         .client-text {
+            position: initial;
             background-color: #ddecdf;
-            padding: 2px;
+            padding: 2px 0 2px 8px;
             border-radius: 3px;
             margin: 4px 0;
             width: 125px;
+            text-align: left;
         }
 
         .helper-text {
+            position: initial;
             background-color: #c9d0de;
-            padding: 2px;
+            padding: 2px 0 2px 8px;
             border-radius: 3px;
             margin: 4px 0;
             width: 125px;
             margin-left: auto;
+            text-align: left;
         }
 
+        .messagers-container {
+            position: initial;
+            width: 180px;
+            overflow-x: hidden;
+            max-height: 165px;
+            min-height: 165px;
+            overflow-y: auto;
+        }
     }
 
     .close {
