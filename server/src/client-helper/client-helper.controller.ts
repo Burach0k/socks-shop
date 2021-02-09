@@ -31,6 +31,8 @@ export class ClientHelperController {
             text: userId + message,
           }).subscribe(() => {
             const userInStack = this.stackConnection.find((userData) => userData.id === id);
+            console.log(this.stackConnection)
+            console.log(id)
             userInStack.reqMessage.subscribe((message) => connection.send(message));
           })
         });
