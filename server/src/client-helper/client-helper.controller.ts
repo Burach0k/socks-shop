@@ -52,7 +52,8 @@ export class ClientHelperController {
     return new Promise((res, rej) => {
       try {
         if (sendEmail.message.reply_to_message) {
-          const userId: string = sendEmail.message.reply_to_message.text.split("\n")[0].split(":")[1];
+          const userId: string = sendEmail.message.reply_to_message.text.split("\n")[0].split(":")[1].trim();
+          console.log(userId);
           const userInStack = this.stackConnection.find((userData) => userData.id === userId);
           userInStack.reqMessage.next(sendEmail.message.text);
         } 
