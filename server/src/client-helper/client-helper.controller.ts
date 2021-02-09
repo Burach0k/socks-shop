@@ -28,7 +28,7 @@ export class ClientHelperController {
 
           httpService.post(`${this.tgUrl}${this.tgtoken}/sendMessage`, {
             chat_id: this.chat_id,
-            text: userId + message.data,
+            text: userId + message,
           }).subscribe(() => {
             const userInStack = this.stackConnection.find((userData) => userData.id === id);
             userInStack.reqMessage.subscribe((message) => connection.send(message));
