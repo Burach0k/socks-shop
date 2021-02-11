@@ -38,8 +38,6 @@ export class ClientHelperService {
 
     if (!chat.isStart) {
       chat.isStart = true;
-      console.log(callback)
-      callback("hello!")
       chat.reqMessage.subscribe(callback);
     }
   }
@@ -50,7 +48,6 @@ export class ClientHelperService {
         const id: string = uuidv1();
         console.log(`--------------connect: ${id}-----------`);
         this.correctConnections.push({ id, reqMessage: new BehaviorSubject<string>(''), isStart: false });
-        console.log(this.correctConnections);
         connection.on('message', (message: string) => {
           const text: string = `id: ${id}\n${message}`;
           this.sendMessageOnTG(text).subscribe(() => this.subscribeChat(id, connection.send));
