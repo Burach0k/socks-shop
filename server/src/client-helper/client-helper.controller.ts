@@ -21,6 +21,9 @@ export class ClientHelperController {
       const userId: string = this.clientHelperService.getUserIdFromTGMessgae(sendEmail.message.reply_to_message.text);
       console.log(userId);
       const userInStack = this.clientHelperService.correctConnections.find((userData) => userData.id === userId);
+      console.log(userInStack);
+      console.log(this.clientHelperService.correctConnections)
+
       userInStack.reqMessage.next(sendEmail.message.text);
     }
 
