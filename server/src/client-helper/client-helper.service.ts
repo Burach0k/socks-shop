@@ -38,6 +38,8 @@ export class ClientHelperService {
 
     if (!chat.isStart) {
       chat.isStart = true;
+      console.log(callback)
+      callback("hello!")
       chat.reqMessage.subscribe(callback);
     }
   }
