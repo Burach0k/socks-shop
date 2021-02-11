@@ -1,7 +1,7 @@
 import { HttpService, Injectable } from '@nestjs/common';
 import * as nodemailer from 'nodemailer';
 import { v1 as uuidv1 } from 'uuid';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 import { SendEmail } from 'src/dto/client-helper.dto';
 import { AppWebsocket } from '../websocket';
@@ -49,8 +49,8 @@ export class ClientHelperService {
       wss.on('connection', (connection) => {
         const id: string = uuidv1();
         console.log(`--------------connect: ${id}-----------`);
-        this.correctConnections.push({ id, reqMessage: new Subject<any>(), isStart: false });
-
+        this.correctConnections.push({ id, reqMessage: new BehaviorSubject<string>(''), isStart: false });
+        console.log(this.correctConnections);
         connection.on('message', (message: string) => {
           const text: string = `id: ${id}\n${message}`;
           this.sendMessageOnTG(text).subscribe(() => this.subscribeChat(id, connection.send));

@@ -1,8 +1,8 @@
-import { Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 export type Connection = {
   id: string;
-  reqMessage: Subject<any>;
+  reqMessage: BehaviorSubject<string>;
   isStart: boolean;
 };
 
