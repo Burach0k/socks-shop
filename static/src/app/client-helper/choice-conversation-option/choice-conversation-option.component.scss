@@ -1,0 +1,13 @@
+p {
+  text-align: center;
+  margin: 0.7em 0;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+  justify-content: space-between;
+  margin: auto;
+  height: 64px;
+}

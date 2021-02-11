@@ -15,16 +15,15 @@ export class UsersController {
   @Post('add')
   public createUser(@Body() createUserDto: createUserDto) {
     const token: string = this.usersService.generateHash(createUserDto);
-
     return this.usersService.saveUser(createUserDto.name, token);
   }
 
   @Post('auth')
   public authUser(@Body() createUserDto: createUserDto) {
-    return new Promise((res, rej) => {
+    return new Promise((res) => {
       const token: string = this.usersService.generateHash(createUserDto);
 
-      this.usersService.getUserInfoByHash(token).then(user => {
+      this.usersService.getUserInfoByHash(token).then((user) => {
         if (user?.id) {
           res(user);
         } else {

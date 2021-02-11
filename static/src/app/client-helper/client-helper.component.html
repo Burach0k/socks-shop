@@ -1,36 +1,22 @@
-<div [class]="chatIconClass">
-    <p class="helper-text-container">
-        {{textDialog}}
-    </p>
+<div class="helper-container" [ngClass]="{ hide: componentsStep.hide }">
+  <div class="components-container" [class]="clientHelperService.chatImageStyleClass.value" [ngClass]="{ close: componentsStep.hide }">
+    <app-welcome (onChange)="onChangeWelcome($event)" *ngIf="componentsStep.welcome"></app-welcome>
 
-    <div *ngIf="chatIconClass === 'hello'">
-        <button (click)="nextChatStatus()">Yes</button>
-        <button (click)="closeChat()">No</button>
-    </div>
+    <app-choice-conversation-option
+      (onChange)="chooseConversationOption($event)"
+      *ngIf="componentsStep.choiseConversation"
+    ></app-choice-conversation-option>
 
-    <div *ngIf="chatIconClass === 'choose'">
-        <button (click)="chooseChat()">Chat</button>
-        <button>Video call</button>
-        <button (click)="sendEmail()" >Email</button>
-    </div>
+    <app-chat *ngIf="componentsStep.chat" (onClose)="onChatClose()"></app-chat>
 
-    <div *ngIf="chatIconClass === 'email'">
-        <input [(ngModel)]="email"/>
-        <textarea [(ngModel)]="message" ></textarea>
-        <button (click)="sendMessageOnEmail()">Sent</button>
-    </div>
+    <app-email *ngIf="componentsStep.email" (onClose)="onCloseEmail()"></app-email>
 
-    <div *ngIf="chatIconClass === 'tg-message'" >
-        <div class="messagers-container">
-            <p *ngFor="let messager of chatStackMessage" [class]="messager.name === 'helper' ? 'helper-text' : 'client-text'">
-                <b>{{messager.name}}</b>: {{messager.message}}
-            </p>
-        </div>
-        <textarea [(ngModel)]="message" ></textarea>
-        <button (click)="sendMessageOnTG()">Sent</button>
-    </div>
+    <app-video-call *ngIf="componentsStep.videoCall"></app-video-call>
+  </div>
 
-    <img src="assets/chat.svg" />
+  <img id="chat-img" src="assets/chat.svg" [class]="clientHelperService.chatImageStyleClass.value" [ngClass]="{ close: componentsStep.hide }"/>
+
+  <img src="assets/assistent.png"/>
+
+  <button class="close-button" (click)="hideChat()">{{ componentsStep.hide ? 'Show' : 'Hide' }}</button>
 </div>
-
-<img *ngIf="chatIconClass !== 'close'" src="assets/assistent.png" />
