@@ -16,7 +16,7 @@ export class ChatComponent implements OnInit {
 
   ngOnInit(): void {
     this.clientHelperService.chatImageStyleClass.next("chat-step");
-    this.clientHelperService.sendSocketMessage(this.getMessageFromTG);
+    this.clientHelperService.sendSocketMessage(this.getMessageFromTG.bind(this));
   }
 
   public getMessageFromTG(message: any): void {
