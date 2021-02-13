@@ -39,8 +39,7 @@ export class ClientHelperService {
     if (!chat.isStart) {
       chat.isStart = true;
       chat.reqMessage.subscribe((message: string) => {
-        console.log('------------------------------------->', message);
-        connection.send(message);
+        if (message) connection.send(message);
       });
     }
   }
