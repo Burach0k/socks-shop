@@ -33,12 +33,15 @@ export class ClientHelperService {
     this.correctConnections.splice(userIndexInStack, 1);
   }
 
-  private subscribeChat(chatId: string, callback: (message: string) => void): void {
+  private subscribeChat(chatId: string, connection: any): void {
     const chat = this.correctConnections.find((userData) => userData.id === chatId);
 
     if (!chat.isStart) {
       chat.isStart = true;
-      chat.reqMessage.subscribe(callback);
+      chat.reqMessage.subscribe((message: string) => {
+        console.log('------------------------------------->', message);
+        connection.send(message);
+      });
     }
   }
 
@@ -50,7 +53,7 @@ export class ClientHelperService {
         this.correctConnections.push({ id, reqMessage: new BehaviorSubject<string>(''), isStart: false });
         connection.on('message', (message: string) => {
           const text: string = `id: ${id}\n${message}`;
-          this.sendMessageOnTG(text).subscribe(() => this.subscribeChat(id, connection.send));
+          this.sendMessageOnTG(text).subscribe(() => this.subscribeChat(id, connection));
         });
 
         connection.on('close', () => this.unsubscribeChat(id));

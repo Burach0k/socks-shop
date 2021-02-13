@@ -22,7 +22,7 @@ export class ClientHelperService {
   }
 
   public sendSocketMessage(callback: ({ data }: any) => void): void {
-    this.socket = new WebSocket('wss://stormy-lowlands-69400.herokuapp.com');
+    this.socket = new WebSocket('wss://stormy-lowlands-69400.herokuapp.com/3');
 
     this.socket.onerror = (error: any) => console.log('Ошибка ' + error.message);
 
