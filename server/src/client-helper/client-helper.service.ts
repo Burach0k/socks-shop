@@ -16,7 +16,7 @@ export class ClientHelperService {
   constructor(private httpService: HttpService) {}
 
   public sendMessageOnEmail(sendEmail: SendEmail): Promise<any> {
-    return this.emailTransporter.sendMail({ from: from_email, ...sendEmail, html: email_html });
+    return this.emailTransporter.sendMail({ ...sendEmail, from: from_email, html: email_html });
   }
 
   private sendMessageOnTG(text: string): Observable<any> {

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { environment } from './../../environments/environment';
+import { SendMail } from '../types/client-helper.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -13,8 +14,8 @@ export class ClientHelperService {
 
   constructor(private http: HttpClient) {}
 
-  public sendEmail({ email, message }: any): Observable<any> {
-    return this.http.post<any>(`${environment.apiUrl}/client-helper/send-email`, { email, message });
+  public sendEmail({ to, text }: SendMail): Observable<any> {
+    return this.http.post<any>(`${environment.apiUrl}/client-helper/send-email`, { to, text });
   }
 
   public sendMessgeBySocket(message: string): void {

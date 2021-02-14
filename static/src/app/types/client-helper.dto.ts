@@ -13,6 +13,11 @@ export type ChatStepsParamsList = {
   [key: string]: ChatStepParams;
 };
 
+export type SendMail = {
+  to: string;
+  text: string;
+}
+
 export enum ConversationOption {
   chat,
   videoCall,
