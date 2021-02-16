@@ -1,0 +1,10 @@
+<p>Write your question and indicate your email so that we will answer you. Quack!</p>
+
+<input style="margin-bottom: 5px" class="input-field" [(ngModel)]="email" />
+
+<textarea [(ngModel)]="message"></textarea>
+
+<div class="footer-space-evenly-button">
+  <button class="success-button" (click)="sendMessageOnEmail()">Sent</button>
+  <button class="close-button" (click)="back()">Back</button>
+</div>

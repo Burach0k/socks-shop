@@ -1,0 +1,13 @@
+<div class="messagers-container">
+  <p *ngFor="let messager of chatMessage" [class]="messager.name === 'socks-assistant' ? 'helper-text' : 'client-text'">
+    <b>{{ messager.name }}</b
+    >: {{ messager.message }}
+  </p>
+</div>
+
+<textarea [(ngModel)]="message"></textarea>
+
+<div style="width: 180px;" class="footer-space-evenly-button">
+  <button class="success-button" (click)="sendMessageOnTG(message)">Sent</button>
+  <button class="close-button" (click)="back()">Back</button>
+</div>

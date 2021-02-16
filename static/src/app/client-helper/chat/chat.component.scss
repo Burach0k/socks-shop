@@ -1,0 +1,29 @@
+.client-text {
+  position: initial;
+  background-color: #ddecdf;
+  padding: 2px 0 2px 8px;
+  border-radius: 3px;
+  margin: 4px 0;
+  width: 125px;
+  text-align: left;
+}
+
+.helper-text {
+  position: initial;
+  background-color: #c9d0de;
+  padding: 2px 0 2px 8px;
+  border-radius: 3px;
+  margin: 4px 0;
+  width: 125px;
+  margin-left: auto;
+  text-align: left;
+}
+
+.messagers-container {
+  position: initial;
+  width: 180px;
+  overflow-x: hidden;
+  max-height: 130px;
+  min-height: 130px;
+  overflow-y: auto;
+}

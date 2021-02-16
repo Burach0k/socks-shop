@@ -1,0 +1,22 @@
+<div class="helper-container" [ngClass]="{ hide: componentsStep.hide }">
+  <div class="components-container" [class]="clientHelperService.chatImageStyleClass.value" [ngClass]="{ close: componentsStep.hide }">
+    <app-welcome (onChange)="onChangeWelcome($event)" *ngIf="componentsStep.welcome"></app-welcome>
+
+    <app-choice-conversation-option
+      (onChange)="chooseConversationOption($event)"
+      *ngIf="componentsStep.choiseConversation"
+    ></app-choice-conversation-option>
+
+    <app-chat *ngIf="componentsStep.chat" (onClose)="onChatClose()"></app-chat>
+
+    <app-email *ngIf="componentsStep.email" (onClose)="onCloseEmail()"></app-email>
+
+    <app-video-call *ngIf="componentsStep.videoCall"></app-video-call>
+  </div>
+
+  <img id="chat-img" src="assets/chat.svg" [class]="clientHelperService.chatImageStyleClass.value" [ngClass]="{ close: componentsStep.hide }"/>
+
+  <img src="assets/assistent.png"/>
+
+  <button class="close-button" (click)="hideChat()">{{ componentsStep.hide ? 'Show' : 'Hide' }}</button>
+</div>
