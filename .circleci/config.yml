@@ -40,7 +40,8 @@ jobs:
           command: cat ./database/update_version.sql | heroku pg:psql --app $HEROKU_APP_NAME
       - run:
           name: Create script file for heroku
-          command: echo "{ "scripts": { "start": "node ./server/dist/main" } }" > package.json
+          command: |
+            echo "{ \"scripts\": { \"start\": \"node ./server/dist/main\" } }" > package.json
       - run:
           name: Deploy Master to Heroku
           root: ./server/
