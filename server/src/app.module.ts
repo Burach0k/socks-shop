@@ -1,4 +1,4 @@
-import { HttpModule, MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
+import { HttpModule, MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 
@@ -10,6 +10,10 @@ import { UsersService } from './users/users.service';
 import { AuthMiddleware } from './middleware/auth.middleware';
 import { ClientHelperController } from './client-helper/client-helper.controller';
 import { ClientHelperService } from './client-helper/client-helper.service';
+import { SockCreatorController } from './sock-creator/sock-creator.controller';
+import { SockCreatorService } from './sock-creator/sock-creator.service';
+import { SockViewController } from './sock-view/sock-view.controller';
+import { SockViewService } from './sock-view/sock-view.service';
 
 @Module({
   imports: [
@@ -18,8 +22,8 @@ import { ClientHelperService } from './client-helper/client-helper.service';
       rootPath: join(__dirname, '..', '..', 'static', 'dist', 'socks-shop'),
     }),
   ],
-  controllers: [AppController, UsersController, ClientHelperController],
-  providers: [AppService, UsersService, ClientHelperService],
+  controllers: [AppController, UsersController, ClientHelperController, SockCreatorController, SockViewController],
+  providers: [AppService, UsersService, ClientHelperService, SockCreatorService, SockViewService],
 })
 export class AppModule implements NestModule {
   constructor() {
@@ -27,8 +31,6 @@ export class AppModule implements NestModule {
   }
 
   configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(AuthMiddleware)
-      .forRoutes('*')
+    consumer.apply(AuthMiddleware).forRoutes('*');
   }
 }

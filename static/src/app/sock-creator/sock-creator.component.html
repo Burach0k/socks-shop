@@ -1,0 +1,12 @@
+<div #canvasContainer class="canvas-container"></div>
+
+<div class="button-container">
+  <input (change)="onFileSelected($event)" type="file" accept=".dae" #file style="display: none" />
+  <button type="button" class="success-button" (click)="loadTemplate(file)">Загрузить шаблон</button>
+
+  <button type="button" disabled="true" class="success-button">Редактировать онлайн</button>
+
+  <button type="button" (click)="clearCanvas()" class="success-button">Очистить</button>
+
+  <button type="button" (click)="showResultBeforeSave()" [disabled]="isNoTepmlate" class="success-button">Сохранить</button>
+</div>

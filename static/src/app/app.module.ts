@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,10 +15,25 @@ import { ChoiceConversationOptionComponent } from './client-helper/choice-conver
 import { EmailComponent } from './client-helper/email/email.component';
 import { ChatComponent } from './client-helper/chat/chat.component';
 import { VideoCallComponent } from './client-helper/video-call/video-call.component';
+import { SockCreatorComponent } from './sock-creator/sock-creator.component';
+import { SaveSockModalComponent } from './sock-creator/save-sock-modal/save-sock-modal.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, ClientHelperComponent, WelcomeComponent, ChoiceConversationOptionComponent, EmailComponent, ChatComponent, VideoCallComponent],
-  imports: [BrowserModule, FormsModule, ReactiveFormsModule, HttpClientModule, AppRoutingModule],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    ClientHelperComponent,
+    WelcomeComponent,
+    ChoiceConversationOptionComponent,
+    EmailComponent,
+    ChatComponent,
+    VideoCallComponent,
+    SockCreatorComponent,
+    SaveSockModalComponent,
+    DashboardComponent,
+  ],
+  imports: [BrowserModule, FormsModule, ReactiveFormsModule, HttpClientModule, AppRoutingModule, BrowserAnimationsModule, MatDialogModule],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

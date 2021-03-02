@@ -1,3 +1,19 @@
+@import '~@angular/material/theming';
+@include mat-core();
+$socks-shop-primary: mat-palette($mat-indigo);
+$socks-shop-accent: mat-palette($mat-pink, A200, A100, A400);
+$socks-shop-warn: mat-palette($mat-red);
+$socks-shop-theme: mat-light-theme(
+  (
+    color: (
+      primary: $socks-shop-primary,
+      accent: $socks-shop-accent,
+      warn: $socks-shop-warn,
+    ),
+  )
+);
+
+@include angular-material-theme($socks-shop-theme);
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100&display=swap');
 
 body {
@@ -68,4 +84,19 @@ body {
 .footer-space-evenly-button {
   display: flex;
   justify-content: space-evenly;
+}
+
+canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
