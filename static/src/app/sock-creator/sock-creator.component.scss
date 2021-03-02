@@ -1,0 +1,25 @@
+:host {
+  display: flex;
+  align-items: center;
+}
+
+.canvas-container {
+  display: inline-block;
+
+  width: 800px;
+  height: 500px;
+
+  margin-left: 10%;
+}
+
+.button-container {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  height: 150px;
+  width: 120px;
+
+  margin-left: 50px;
+
+}
