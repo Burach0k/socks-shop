@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { DataBase } from 'src/db';
+
+import { DataBase } from '../db/index';
 
 @Injectable()
 export class SockViewService {

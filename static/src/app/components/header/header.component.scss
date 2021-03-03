@@ -1,0 +1,11 @@
+.header {
+    height: 50px;
+    padding: 20px;
+
+    .link-group {
+        display: flex;
+        justify-content: space-around;
+
+        width: 300px;
+    }
+}

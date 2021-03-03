@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 
+import { CanvasService } from '../components/canvas/canvas.service';
 import { SockCreatorService } from './sock-creator.service';
 
 @Component({
@@ -8,25 +8,15 @@ import { SockCreatorService } from './sock-creator.service';
   templateUrl: './sock-creator.component.html',
   styleUrls: ['./sock-creator.component.scss'],
 })
-export class SockCreatorComponent implements OnInit, AfterViewInit {
-  @ViewChild('canvasContainer')
-  canvasContainer: ElementRef<HTMLCanvasElement> | undefined;
-
+export class SockCreatorComponent implements OnInit {
   public isNoTepmlate: boolean = true;
 
-  constructor(private sockCreatorService: SockCreatorService) {}
+  constructor(private sockCreatorService: SockCreatorService, private canvasService: CanvasService) {}
 
   public ngOnInit(): void {}
 
-  public ngAfterViewInit(): void {
-    if (this.canvasContainer) {
-      this.sockCreatorService.createCanvas(this.canvasContainer.nativeElement);
-    }
-  }
-
   public async showResultBeforeSave(): Promise<any> {
-    const canvas: any = this.canvasContainer?.nativeElement.children[0];
-    const blob = await this.sockCreatorService.getBlobFromCanvas(canvas);
+    const blob = await this.canvasService.getBlobFromCanvas();
 
     this.sockCreatorService.showConfirmModal(blob);
   }
@@ -34,7 +24,7 @@ export class SockCreatorComponent implements OnInit, AfterViewInit {
   public onFileSelected(evt: any): void {
     const fileObject = evt.target.files[0];
     this.isNoTepmlate = false;
-    this.sockCreatorService.loadDaeTemplate(fileObject);
+    this.canvasService.loadDaeTemplate(fileObject);
   }
 
   public loadTemplate(fileInput: HTMLElement): void {
@@ -42,7 +32,7 @@ export class SockCreatorComponent implements OnInit, AfterViewInit {
   }
 
   public clearCanvas(): void {
-    this.sockCreatorService.clearScene();
+    this.canvasService.clearScene();
     this.isNoTepmlate = true;
   }
 }

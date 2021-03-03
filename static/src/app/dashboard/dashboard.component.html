@@ -1,4 +1,5 @@
-<div *ngFor="let sock of socks" class="sock-card">
-    <p>{{sock.name}}</p>
-    <img [src]="sock.url" width="150px" height="110px" />
+<div class="filters-container"></div>
+
+<div class="cards-container">
+  <app-sock-card *ngFor="let sock of socks" [routerLink]="['/sock/' + sock.id]" [sock]="sock"></app-sock-card>
 </div>
