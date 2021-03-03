@@ -10,6 +10,6 @@ export class SockCreatorController {
   @Post('/save')
   @UseInterceptors(FileFieldsInterceptor([{ name: 'screenshot' }, { name: 'daeFile' }]))
   public saveSock(@UploadedFiles() files, @Body() sock) {
-    return this.sockCreatorService.saveSock(sock.name, files, 12); //<--- fix
+    return this.sockCreatorService.saveSock(sock.name, files, 1); //<--- fix
   }
 }
