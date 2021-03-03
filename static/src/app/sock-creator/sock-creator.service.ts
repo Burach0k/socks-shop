@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 
-import { environment } from 'src/environments/environment';
+import { environment } from '../../environments/environment';
 import { CanvasService } from '../components/canvas/canvas.service';
 import { Sock } from '../types/sock.dto';
 import { SaveSockModalComponent } from './save-sock-modal/save-sock-modal.component';

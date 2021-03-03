@@ -1,6 +1,6 @@
 import { Body, Controller, Post } from '@nestjs/common';
 
-import { SendEmail, TGSendMessage } from 'src/dto/client-helper.dto';
+import { SendEmail, TGSendMessage } from '../dto/client-helper.dto';
 import { ClientHelperService } from './client-helper.service';
 
 @Controller('client-helper')

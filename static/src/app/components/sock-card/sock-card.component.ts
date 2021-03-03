@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Sock } from 'src/app/types/sock.dto';
 
 @Component({
   selector: 'app-sock-card',

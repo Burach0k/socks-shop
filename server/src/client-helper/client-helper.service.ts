@@ -3,9 +3,8 @@ import * as nodemailer from 'nodemailer';
 import { v1 as uuidv1 } from 'uuid';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { SendEmail } from 'src/dto/client-helper.dto';
+import { SendEmail, Connection } from '../dto/client-helper.dto';
 import { AppWebsocket } from '../websocket';
-import { Connection } from 'src/dto/client-helper.dto';
 import { tg_url, transport_config, chat_id, from_email, email_html } from './client-helper.consts';
 
 @Injectable()

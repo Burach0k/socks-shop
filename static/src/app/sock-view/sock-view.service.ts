@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
+
+import { environment } from '../../environments/environment';
 import { Sock } from '../types/sock.dto';
 
 @Injectable({
