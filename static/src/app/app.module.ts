@@ -22,6 +22,8 @@ import { SockCardComponent } from './components/sock-card/sock-card.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SockViewComponent } from './sock-view/sock-view.component';
 import { CanvasComponent } from './components/canvas/canvas.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { PasswordComplexityIconComponent } from './registration/password-complexity-icon/password-complexity-icon.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { CanvasComponent } from './components/canvas/canvas.component';
     HeaderComponent,
     SockViewComponent,
     CanvasComponent,
+    RegistrationComponent,
+    PasswordComplexityIconComponent,
   ],
   imports: [BrowserModule, FormsModule, ReactiveFormsModule, HttpClientModule, AppRoutingModule, BrowserAnimationsModule, MatDialogModule],
   providers: [

@@ -14,6 +14,8 @@ import { SockCreatorController } from './sock-creator/sock-creator.controller';
 import { SockCreatorService } from './sock-creator/sock-creator.service';
 import { SockViewController } from './sock-view/sock-view.controller';
 import { SockViewService } from './sock-view/sock-view.service';
+import { AuthModule } from './auth/auth.module';
+import { Users2Module } from './users2/users2.module';
 
 @Module({
   imports: [
@@ -21,6 +23,8 @@ import { SockViewService } from './sock-view/sock-view.service';
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', '..', 'static', 'dist', 'socks-shop'),
     }),
+    AuthModule,
+    Users2Module,
   ],
   controllers: [AppController, UsersController, ClientHelperController, SockCreatorController, SockViewController],
   providers: [AppService, UsersService, ClientHelperService, SockCreatorService, SockViewService],

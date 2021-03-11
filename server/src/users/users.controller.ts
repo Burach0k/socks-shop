@@ -1,11 +1,13 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 
+import { AuthService } from '../auth/auth.service';
+import { LocalAuthGuard } from '..//auth/local-auth.guard';
 import { createUserDto } from '../dto/users.dto';
 import { UsersService } from './users.service';
 
 @Controller('users')
 export class UsersController {
-  constructor(private usersService: UsersService) {}
+  constructor(private usersService: UsersService, private authService: AuthService) {}
 
   @Get(':id')
   public getUserInfo(@Param() params: { id: number }): Promise<any> {
@@ -14,20 +16,18 @@ export class UsersController {
 
   @Post('add')
   public createUser(@Body() createUserDto: createUserDto) {
-    const token: string = this.usersService.generateHash(createUserDto);
-    return this.usersService.saveUser(createUserDto.name, token);
+    return this.authService.registration(createUserDto);
   }
 
+  @UseGuards(LocalAuthGuard)
   @Post('auth')
-  public authUser(@Body() createUserDto: createUserDto) {
-    return new Promise((res) => {
-      const token: string = this.usersService.generateHash(createUserDto);
-
-      this.usersService.getUserInfoByHash(token).then((user) => {
-        if (user?.id) {
-          res(user);
+  public authUser(@Body() createUserDto: createUserDto): any {
+    return new Promise((res, rej) => {
+      this.usersService.checkUser(createUserDto.name).then((user) => {
+        if (user.password === createUserDto.password) {
+          this.authService.login(user).then(res);
         } else {
-          this.usersService.saveUser(createUserDto.name, token).then(res);
+          rej('jepa');
         }
       });
     });

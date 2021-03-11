@@ -49,17 +49,15 @@ export class UsersService {
     });
   }
 
-  public saveUser(name: string, hash: string): Promise<UsersDto> {
-    return new Promise((responce, reject) => {
-      DataBase.client.query(`INSERT INTO USERS (name, hash, roles) VALUES ('${name}', '${hash}', '{"client"}');`, (err, res) => {
-        if (err) reject(err);
-
-        this.getUserInfoByHash(hash).then(responce);
-      });
-    });
+  public saveUser(name: string, password: string): Promise<any> {
+    return DataBase.client
+      .query(`INSERT INTO USERS (name, password, roles) VALUES ($1, $2, '{"client"}') RETURNING id;`, [name, password])
+      .then((req) => req.rows[0]);
   }
 
-  public checkToken(hash: string): Promise<QueryResult<any>> {
-    return DataBase.client.query(`SELECT id FROM USERS WHERE hash = '${hash}' LIMIT 1;`);
+  public checkUser(name: string): Promise<{name: string, password: string, id: number}> {
+    return DataBase.client
+      .query(`SELECT * FROM USERS WHERE name = $1 LIMIT 1;`, [name])
+      .then(res => res.rows[0]);
   }
 }

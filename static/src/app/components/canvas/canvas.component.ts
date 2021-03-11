@@ -1,4 +1,4 @@
-import { ViewChild, ElementRef, AfterViewInit, Component, OnInit } from '@angular/core';
+import { ViewChild, ElementRef, AfterViewInit, Component, OnInit, OnDestroy } from '@angular/core';
 
 import { CanvasService } from './canvas.service';
 
@@ -7,7 +7,7 @@ import { CanvasService } from './canvas.service';
   templateUrl: './canvas.component.html',
   styleUrls: ['./canvas.component.scss'],
 })
-export class CanvasComponent implements OnInit, AfterViewInit {
+export class CanvasComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('canvasContainer')
   canvasContainer!: ElementRef<HTMLCanvasElement>;
 
@@ -17,6 +17,10 @@ export class CanvasComponent implements OnInit, AfterViewInit {
 
   public ngAfterViewInit(): void {
     this.canvasService.createCanvas(this.canvasContainer.nativeElement);
+  }
+
+  public ngOnDestroy(): void {
+    this.canvasService.clearScene();
   }
 
 }

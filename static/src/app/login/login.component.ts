@@ -30,9 +30,9 @@ export class LoginComponent implements OnInit {
   public authenticate(): void {
     if (this.credentialsForm.valid) {
       this.loginService.authenticate(this.credentialsForm.value).subscribe(
-        (user) => {
-          this.loginService.user = user;
-          this.router.navigate(['/'])
+        ({access_token}) => {
+          localStorage.setItem('access_token', access_token);
+          this.router.navigate(['/dashboard'])
         },
         () => this.showCredentialsError = true
       );

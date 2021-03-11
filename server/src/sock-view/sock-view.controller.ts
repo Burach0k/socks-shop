@@ -1,5 +1,6 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { SockViewService } from './sock-view.service';
 
 @Controller('sock-view')
@@ -18,6 +19,7 @@ export class SockViewController {
       .then(this.betyaToBase64.bind(this))
   }
 
+  @UseGuards(JwtAuthGuard)
   @Post('load')
   public loadSock(@Body() body: { offset: number; limit: number }) {
     return this.sockViewService.getNameAndImageByOffset(body);
