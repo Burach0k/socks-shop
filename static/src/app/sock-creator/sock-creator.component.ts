@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { CanvasService } from '../components/canvas/canvas.service';
 import { SockCreatorService } from './sock-creator.service';
@@ -8,12 +8,10 @@ import { SockCreatorService } from './sock-creator.service';
   templateUrl: './sock-creator.component.html',
   styleUrls: ['./sock-creator.component.scss'],
 })
-export class SockCreatorComponent implements OnInit {
+export class SockCreatorComponent {
   public isNoTepmlate: boolean = true;
 
   constructor(private sockCreatorService: SockCreatorService, private canvasService: CanvasService) {}
-
-  public ngOnInit(): void {}
 
   public async showResultBeforeSave(): Promise<any> {
     const blob = await this.canvasService.getBlobFromCanvas();

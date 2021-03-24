@@ -36,7 +36,7 @@ export class SockCreatorService {
     formData.append('screenshot', sock.screenshot);
     formData.append('daeFile', daeFile);
     formData.append('name', sock.name);
-    this.saveSock(formData).subscribe(console.log);
+    this.saveSock(formData).subscribe();
   }
 
   public saveSock(formData: FormData): Observable<boolean> {

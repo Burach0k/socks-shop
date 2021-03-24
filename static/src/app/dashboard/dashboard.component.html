@@ -1,5 +1,8 @@
-<div class="filters-container"></div>
+<div class="filters-container">
+  <button type="button" class="success-button" (click)="sotrByLikes()">Популярные</button>
+  <button type="button" class="success-button" (click)="showSubscribes()">Остлеживаемые</button>
+</div>
 
 <div class="cards-container">
-  <app-sock-card *ngFor="let sock of socks" [routerLink]="['/sock/' + sock.id]" [sock]="sock"></app-sock-card>
+  <app-sock-card *ngFor="let sock of dashboadrService.socks" [routerLink]="['/sock/' + sock.id]" [sock]="sock"></app-sock-card>
 </div>

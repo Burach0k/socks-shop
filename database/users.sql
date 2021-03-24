@@ -5,5 +5,6 @@ CREATE TABLE USERS(
     password varchar(20) NOT NULL,
     name varchar(20) NOT NULL,
     UNIQUE (name),
-    roles Roles[] NOT NULL
+    roles Roles[] NOT NULL,
+    subscribes integer[]
 );

@@ -1,8 +1,10 @@
 import { Client } from 'pg';
 
+import { env } from '../environments/environments';
+
 export class DataBase {
   public static client = new Client({
-    connectionString: process.env.DATABASE_URL || 'postgres://postgres:postgres@localhost:5432/socks_shop',
+    connectionString: env.dataBaseUrl,
     ssl: {
       rejectUnauthorized: false,
     },

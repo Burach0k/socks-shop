@@ -1,4 +1,10 @@
-<div class="sock-card">
-    <p>{{sock.name}}</p>
-    <img [src]="sock.url" width="150px" height="110px" />
+<div [class]="classContainer">
+  <img [src]="sock.url" width="150px" height="110px" />
+
+  <div class="ribbon">{{ sock.name }}</div>
+
+  <div class="description">{{sock.username}}</div>
+
+  <div class="likes">{{ sock.likes }}</div>
+  <div class="subscribes"></div>
 </div>

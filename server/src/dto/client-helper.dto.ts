@@ -1,9 +1,15 @@
-import { BehaviorSubject } from 'rxjs';
+import { Subject } from 'rxjs';
 
 export type Connection = {
   id: string;
-  reqMessage: BehaviorSubject<string>;
+  reqMessage: Subject<string>;
   isStart: boolean;
+};
+
+export type ClientChatInfo = {
+  id: string;
+  message: string;
+  connection: any
 };
 
 export type SendEmail = {

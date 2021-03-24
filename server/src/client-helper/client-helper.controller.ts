@@ -15,15 +15,12 @@ export class ClientHelperController {
   }
 
   @Post('updateMessage')
-  public updateMessage(@Body() sendEmail: TGSendMessage) {
-    console.log(sendEmail)
-    if (sendEmail?.message?.reply_to_message) {
-      const userId: string = this.clientHelperService.getUserIdFromTGMessgae(sendEmail.message.reply_to_message.text);
-      const userInStack = this.clientHelperService.correctConnections.find((userData) => userData.id === userId);
+  public updateMessage(@Body() sendEmail: TGSendMessage): boolean {
+    const replyText: string = sendEmail?.message?.reply_to_message?.text;
 
-      if (userInStack) {
-        userInStack.reqMessage.next(sendEmail.message.text);
-      }
+    if (replyText) {
+      const sendText = sendEmail.message.text;
+      this.clientHelperService.sendMessageToClient(replyText, sendText);
     }
 
     return true;

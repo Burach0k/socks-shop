@@ -1,5 +1,2 @@
-ALTER TABLE users
-DROP COLUMN hash;
-
-ALTER TABLE users
-ADD password varchar(20) NOT NULL default '1';
+alter table socks add likes integer[];
+alter table users add subscribes integer[];

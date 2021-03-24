@@ -3,5 +3,6 @@ CREATE TABLE SOCKS(
     name varchar(20) NOT NULL,
     image bytea,
     daeFile bytea,
-	userId INTEGER REFERENCES users (id)
+	userId INTEGER REFERENCES users (id),
+    likes integer[]
 );

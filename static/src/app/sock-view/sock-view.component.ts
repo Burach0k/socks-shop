@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CanvasService } from '../components/canvas/canvas.service';
 
-import { Sock } from '../types/sock.dto';
 import { SockViewService } from './sock-view.service';
 
 @Component({
@@ -11,22 +9,17 @@ import { SockViewService } from './sock-view.service';
   styleUrls: ['./sock-view.component.scss'],
 })
 export class SockViewComponent implements OnInit {
-  public sock!: any;
+  constructor(public sockViewService: SockViewService, private route: ActivatedRoute) {}
 
-  constructor(private sockViewService: SockViewService, private route: ActivatedRoute, private canvasService: CanvasService) {}
+  public ngOnInit(): void {
+    this.route.params.subscribe((params) => this.sockViewService.loadSockInfo(params.id));
+  }
 
-  ngOnInit(): void {
-    this.route.params.subscribe((params) => {
-      this.sockViewService.getSockInfo(params.id).subscribe((sock) => {
-        this.sock = sock;
-        const blob = new Blob([new Uint8Array(this.sock.daefile.data)], { type: 'text/xml' });
+  public like(): void {
+    this.sockViewService.changeLike();
+  }
 
-        blob.text().then(a => {
-          const obj = JSON.parse(a).buffer.data;
-          const uritext = JSON.parse(a).buffer.data.map((char: number) => String.fromCodePoint(char)).join('');
-          this.canvasService.loadDaeTemplate(new Blob([decodeURIComponent(uritext.split('data:text/xml;charset=UTF-8,')[1])], { type: 'text/xml' }));
-        })
-      });
-    });
+  public subscribeToAuthor(): void {
+    this.sockViewService.changeSubscribe();
   }
 }

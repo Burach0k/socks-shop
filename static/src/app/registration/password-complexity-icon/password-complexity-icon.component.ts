@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { ProtectionLevel } from '../../types/protect-level';
 
@@ -7,37 +7,57 @@ import { ProtectionLevel } from '../../types/protect-level';
   templateUrl: './password-complexity-icon.component.html',
   styleUrls: ['./password-complexity-icon.component.scss'],
 })
-export class PasswordComplexityIconComponent implements OnInit {
+export class PasswordComplexityIconComponent {
   @Input() protectionLevel: ProtectionLevel = ProtectionLevel.low;
 
   public hiddenShield = true;
   public hiddenSword = true;
   public hiddenCrown = true;
 
-  constructor() {}
+  private ngOnChanges(): void {
+    this.updateProtactionLevel();
+  }
 
-  ngOnInit(): void {}
+  private updateProtactionLevel(): void {
+    switch (this.protectionLevel) {
+      case ProtectionLevel.middle:
+        this.showMiddleLevel();
+        break;
 
-  ngOnChanges(): void {
-    if (this.protectionLevel === ProtectionLevel.middle) {
-      this.hiddenShield = false;
-    } else {
-      this.hiddenShield = true;
+      case ProtectionLevel.hard:
+        this.showHardLevel();
+        break;
+
+      case ProtectionLevel.superHard:
+        this.showSuperHardLevel();
+        break;
+
+      default:
+        this.hideAll();
     }
+  }
 
-    if (this.protectionLevel === ProtectionLevel.hard) {
-      this.hiddenSword = false;
-      this.hiddenShield = false;
-    } else {
-      this.hiddenSword = true;
-    }
+  private hideAll(): void {
+    this.hiddenShield = true;
+    this.hiddenSword = true;
+    this.hiddenCrown = true;
+  }
 
-    if (this.protectionLevel === ProtectionLevel.superHard) {
-      this.hiddenSword = false;
-      this.hiddenShield = false;
-      this.hiddenCrown = false;
-    } else {
-      this.hiddenCrown = true;
-    }
+  private showMiddleLevel(): void {
+    this.hiddenShield = false;
+    this.hiddenSword = true;
+    this.hiddenCrown = true;
+  }
+
+  private showHardLevel(): void {
+    this.hiddenShield = false;
+    this.hiddenSword = false;
+    this.hiddenCrown = true;
+  }
+
+  private showSuperHardLevel(): void {
+    this.hiddenShield = false;
+    this.hiddenSword = false;
+    this.hiddenCrown = false;
   }
 }

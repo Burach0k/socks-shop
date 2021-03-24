@@ -6,8 +6,16 @@
 .filters-container {
   display: inline-block;
 
+  margin-top: 200px;
+
   width: 200px;
   height: 100%;
+
+  text-align: center;
+
+  button {
+    margin: 5px;
+  }
 }
 
 .cards-container {
