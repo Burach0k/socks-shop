@@ -20,16 +20,18 @@ body {
   margin: 0;
 
   button {
-    border: 1px dashed;
-    padding: 0 10px;
+    color: white;
+    border-radius: 3px;
+    padding: 5px 10px;
+    border: none;
   }
 
   .success-button {
-    background-color: #fab53c;
+    background-color: #5077c4;
   }
 
   .close-button {
-    background-color: #c1b7b5;
+    background-color: #43b0cb;
   }
 }
 

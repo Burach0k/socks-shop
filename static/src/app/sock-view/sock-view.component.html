@@ -1,0 +1,12 @@
+<div style="margin: 10px">
+  <app-canvas style="margin-left: 80px"></app-canvas>
+
+  <div class="info-container">
+    <p style="margin-left: 80px">{{ sockViewService.sock?.username }}</p>
+    <p style="margin-left: 80px">Автор: {{ sockViewService.sock?.name }}</p>
+    <p style="margin-left: 80px">сердечек: {{ sockViewService.sock?.likes }}</p>
+
+    <button (click)="subscribeToAuthor()" class="success-button">{{ sockViewService.sock?.isUserSubscribe ? 'Отписаться' : 'Подписаться' }}</button>
+    <button (click)="like()" class="success-button">Лайк</button>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
@@ -6,15 +6,13 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   templateUrl: './save-sock-modal.component.html',
   styleUrls: ['./save-sock-modal.component.scss'],
 })
-export class SaveSockModalComponent implements OnInit {
+export class SaveSockModalComponent {
   public imageSrc: string = '';
   public name: string = '';
 
   constructor(public dialogRef: MatDialogRef<SaveSockModalComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
     this.loadImage(data.blob);
   }
-
-  ngOnInit(): void {}
 
   public save(): void {
     this.dialogRef.close({

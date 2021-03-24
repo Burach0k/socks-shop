@@ -18,6 +18,13 @@ import { VideoCallComponent } from './client-helper/video-call/video-call.compon
 import { SockCreatorComponent } from './sock-creator/sock-creator.component';
 import { SaveSockModalComponent } from './sock-creator/save-sock-modal/save-sock-modal.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { SockCardComponent } from './components/sock-card/sock-card.component';
+import { HeaderComponent } from './components/header/header.component';
+import { SockViewComponent } from './sock-view/sock-view.component';
+import { CanvasComponent } from './components/canvas/canvas.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { PasswordComplexityIconComponent } from './registration/password-complexity-icon/password-complexity-icon.component';
+import { AuthDialogComponent } from './components/auth-dialog/auth-dialog.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +39,13 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     SockCreatorComponent,
     SaveSockModalComponent,
     DashboardComponent,
+    SockCardComponent,
+    HeaderComponent,
+    SockViewComponent,
+    CanvasComponent,
+    RegistrationComponent,
+    PasswordComplexityIconComponent,
+    AuthDialogComponent,
   ],
   imports: [BrowserModule, FormsModule, ReactiveFormsModule, HttpClientModule, AppRoutingModule, BrowserAnimationsModule, MatDialogModule],
   providers: [

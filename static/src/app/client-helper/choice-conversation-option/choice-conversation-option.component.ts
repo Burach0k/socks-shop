@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ConversationOption } from 'src/app/types/client-helper.dto';
+import { ConversationOption } from '../../types/client-helper.dto';
 import { ClientHelperService } from '../client-helper.service';
 
 @Component({

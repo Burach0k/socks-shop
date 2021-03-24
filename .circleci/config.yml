@@ -74,7 +74,4 @@ workflows:
     jobs:
       - deploy:
           context: test
-          filters:
-              branches:
-                only:
-                  - main
+

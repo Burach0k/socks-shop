@@ -10,29 +10,27 @@ import { ClientHelperService } from './client-helper.service';
   styleUrls: ['./client-helper.component.scss'],
 })
 export class ClientHelperComponent implements OnInit {
-  public componentsStep: { [componentName: string]: boolean } = { welcome: true };
-
   constructor(public clientHelperService: ClientHelperService, private ref: ChangeDetectorRef) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.clientHelperService.initHelperVisible();
+  }
 
   ngAfterContentChecked() {
     this.ref.detectChanges();
   }
 
   public onChatClose(): void {
-    this.componentsStep = { choiseConversation: true };
-    this.clientHelperService.chatImageStyleClass.next('choose-step');
+    this.clientHelperService.showChooseStep();
   }
 
   public onCloseEmail(): void {
-    this.componentsStep = { choiseConversation: true };
-    this.clientHelperService.chatImageStyleClass.next('choose-step');
+    this.clientHelperService.showChooseStep();
   }
 
   public onChangeWelcome(isConfirm: boolean): void {
     if (isConfirm) {
-      this.componentsStep = { choiseConversation: true };
+      this.clientHelperService.componentsStep = { choiseConversation: true };
     } else {
       this.hideChat();
     }
@@ -41,25 +39,21 @@ export class ClientHelperComponent implements OnInit {
   public chooseConversationOption(option: ConversationOption): void {
     switch (option) {
       case ConversationOption.chat:
-        this.componentsStep = { chat: true };
+        this.clientHelperService.componentsStep = { chat: true };
         break;
 
       case ConversationOption.email:
-        this.componentsStep = { email: true };
+        this.clientHelperService.componentsStep = { email: true };
         break;
 
       case ConversationOption.videoCall:
-        this.componentsStep = { videoCall: true };
+        this.clientHelperService.componentsStep = { videoCall: true };
         break;
     }
   }
 
   public hideChat(): void {
-    this.componentsStep = { hide: !this.componentsStep.hide };
-
-    if (!this.componentsStep.hide) {
-      this.componentsStep = { welcome: true };
-      this.clientHelperService.chatImageStyleClass.next('welcome-step');
-    }
+    this.clientHelperService.changeVisibleStatus();
+    this.clientHelperService.saveStatusInMemory();
   }
 }

@@ -1,10 +1,30 @@
-.sock-card {
+:host {
   display: inline-flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 5px;
-  border-radius: 5px;
-  margin: 5px;
-  border: 1px solid black;
+  height: 100%;
+}
+
+.filters-container {
+  display: inline-block;
+
+  margin-top: 200px;
+
+  width: 200px;
+  height: 100%;
+
+  text-align: center;
+
+  button {
+    margin: 5px;
+  }
+}
+
+.cards-container {
+  display: inline-block;
+
+  width: calc(100% - 200px);
+  height: 100%;
+
+  padding-top: 67px;
+
+  margin-top: 50px;
 }

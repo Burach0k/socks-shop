@@ -1,46 +1,42 @@
 <div class="login-container">
   <div class="login-form">
-      <div>
-        <form [formGroup]="credentialsForm">
+    <div>
+      <form [formGroup]="credentialsForm">
         <div class="p-col-12">
           <div class="p-grid" [ngClass]="{ 'has-error': credentialsForm.controls.name.invalid && credentialsForm.controls.name.touched }">
             <label class="p-col-2 label">Логин</label>
             <div class="p-col-10">
-              <input
-                formControlName="name"
-                class="p-col-12"
-                pInputText
-                type="text"/>
-              <span *ngIf="credentialsForm.controls.name.invalid && credentialsForm.controls.name.touched" class="error">Не заполнено обязательное поле.</span>
+              <input formControlName="name" class="p-col-12" pInputText type="text" />
+              <span *ngIf="credentialsForm.controls.name.invalid && credentialsForm.controls.name.touched" class="error"
+                >Не заполнено обязательное поле.</span
+              >
             </div>
           </div>
         </div>
         <div class="p-col-12">
-          <div class="p-grid" [ngClass]="{ 'has-error': credentialsForm.controls.password.invalid && credentialsForm.controls.password.touched }">
+          <div
+            class="p-grid"
+            [ngClass]="{
+              'has-error': credentialsForm.controls.password.invalid && credentialsForm.controls.password.touched
+            }"
+          >
             <label class="p-col-2 label">Пароль</label>
             <div class="p-col-10">
-              <input
-                formControlName="password"
-                class="p-col-12"
-                pInputText
-                type="password"/>
-              <span *ngIf="credentialsForm.controls.password.invalid && credentialsForm.controls.password.touched" class="error">Не заполнено обязательное поле.</span>
+              <input formControlName="password" class="p-col-12" pInputText type="password" />
+              <span *ngIf="credentialsForm.controls.password.invalid && credentialsForm.controls.password.touched" class="error"
+                >Не заполнено обязательное поле.</span
+              >
             </div>
           </div>
         </div>
 
-        <p *ngIf="showCredentialsError" class="error" style="font-size: 16px; margin-top: 25px;" >
+        <p *ngIf="loginService.showCredentialsError" class="error" style="font-size: 16px; margin-top: 25px">
           <i class="fas fa-times-circle"></i>
-           Ошибка: Введён не верный логин или пароль, либо такой пользователь существует
+          Ошибка: Введён не верный логин или пароль, либо такой пользователь существует
         </p>
 
-        <button
-          type="button"
-          class="success-button"
-          [disabled]="credentialsForm.invalid"
-          (click)="authenticate()"
-        >Войти</button>
-        </form>
-      </div>
+        <button type="button" class="success-button" [disabled]="credentialsForm.invalid" (click)="authenticate()">Войти</button>
+      </form>
+    </div>
   </div>
 </div>

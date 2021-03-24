@@ -11,6 +11,7 @@ import { SendMail } from '../types/client-helper.dto';
 export class ClientHelperService {
   public socket: any;
   public chatImageStyleClass: BehaviorSubject<string> = new BehaviorSubject('welcome-step');
+  public componentsStep: { [componentName: string]: boolean } = { welcome: true };
 
   constructor(private http: HttpClient) {}
 
@@ -28,5 +29,22 @@ export class ClientHelperService {
     this.socket.onerror = (error: any) => console.log('Ошибка ' + error.message);
 
     this.socket.onmessage = ({ data }: any) => callback(data);
+  }
+
+  public initHelperVisible(): void {
+    this.componentsStep.hide = localStorage.getItem('showHelper') === 'true';
+  }
+
+  public saveStatusInMemory(): void {
+    localStorage.setItem('showHelper', `${this.componentsStep.hide}`);
+  }
+
+  public changeVisibleStatus() {
+    this.componentsStep = { ...this.componentsStep, hide: !this.componentsStep.hide };
+  }
+
+  public showChooseStep(): void {
+    this.componentsStep = { choiseConversation: true };
+    this.chatImageStyleClass.next('choose-step');
   }
 }
