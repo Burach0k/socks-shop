@@ -1,0 +1,28 @@
+.text-area-container {
+  padding: 20px 20px 0 20px;
+  background-color: #f7f7f7;
+
+  .text-area {
+    min-height: 120px;
+    height: 130px;
+    width: 100%;
+
+    padding: 10px;
+
+    border: 1px solid #e0e0e0;
+    background: #fff;
+
+    font: 14px/1.6 Verdana, Geneva, sans-serif;
+    vertical-align: top;
+    color: #000;
+    resize: vertical;
+  }
+
+  .toolbar {
+    display: flex;
+    width: 300px;
+    padding: 10px;
+
+    justify-content: space-between;
+  }
+}

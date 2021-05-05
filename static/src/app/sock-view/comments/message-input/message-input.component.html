@@ -1,0 +1,16 @@
+<div class="text-area-container">
+  <p *ngIf="isShowFinalMessage" style="border: dashed 2px; padding: 10px; font: 14px/1.6 Verdana, Geneva, sans-serif;" [innerHTML]="templateText"></p>
+
+  <div class="toolbar">
+    <img width="36px" height="36px" src="assets/bold.svg" title="Жирный" (click)="addBoldTemplate()" />
+    <img width="36px" height="36px" src="assets/italic.svg" title="Курсив" (click)="addItalicTemplate()" />
+    <img width="36px" height="36px" src="assets/underline.svg" title="Подчеркнутый" (click)="addUnderlineTemplate()" />
+    <img width="36px" height="36px" src="assets/quote.svg" title="Цитата" (click)="addQuoteTemplate()" />
+    <img width="36px" height="36px" src="assets/link.svg" title="Ссылка" (click)="addLinkTemplate()" />
+  </div>
+
+  <textarea cols="30" rows="5" class="text-area" #commentField (ngModelChange)="onChangeMessage($event)" [(ngModel)]="message"></textarea>
+
+  <button (click)="changeVisibleFinalMessage()" style="height: 35px; margin: 8px 8px 8px 0" class="close-button">Предосмотр</button>
+  <button (click)="send()" style="height: 35px; margin: 8px 0 8px 0" class="success-button">Отправить</button>
+</div>

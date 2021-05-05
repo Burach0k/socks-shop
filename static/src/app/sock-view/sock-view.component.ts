@@ -9,10 +9,15 @@ import { SockViewService } from './sock-view.service';
   styleUrls: ['./sock-view.component.scss'],
 })
 export class SockViewComponent implements OnInit {
+  public sockId!: number;
+
   constructor(public sockViewService: SockViewService, private route: ActivatedRoute) {}
 
   public ngOnInit(): void {
-    this.route.params.subscribe((params) => this.sockViewService.loadSockInfo(params.id));
+    this.route.params.subscribe((params) => {
+      this.sockId = params.id;
+      this.sockViewService.loadSockInfo(params.id);
+    });
   }
 
   public like(): void {

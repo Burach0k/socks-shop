@@ -15,6 +15,8 @@ import { SockViewController } from './sock-view/sock-view.controller';
 import { SockViewService } from './sock-view/sock-view.service';
 import { AuthModule } from './auth/auth.module';
 import { WebsocketService } from './client-helper/websocket.service';
+import { ChatController } from './chat/chat.controller';
+import { ChatService } from './chat/chat.service';
 
 @Module({
   imports: [
@@ -24,8 +26,8 @@ import { WebsocketService } from './client-helper/websocket.service';
     }),
     AuthModule,
   ],
-  controllers: [AppController, UsersController, ClientHelperController, SockCreatorController, SockViewController],
-  providers: [AppService, UsersService, ClientHelperService, SockCreatorService, SockViewService, WebsocketService],
+  controllers: [AppController, UsersController, ClientHelperController, SockCreatorController, SockViewController, ChatController],
+  providers: [AppService, UsersService, ClientHelperService, SockCreatorService, SockViewService, WebsocketService, ChatService],
 })
 export class AppModule {
   constructor() {
