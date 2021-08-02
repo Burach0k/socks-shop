@@ -6,6 +6,3 @@ CREATE TABLE comments(
 	sockId INTEGER REFERENCES socks (id) NOT NULL,
 	parentId INTEGER REFERENCES comments (id)
 );
-
-alter table socks add likes integer[];
-alter table users add subscribes integer[];

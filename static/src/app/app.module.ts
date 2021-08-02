@@ -25,6 +25,10 @@ import { CanvasComponent } from './components/canvas/canvas.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { PasswordComplexityIconComponent } from './registration/password-complexity-icon/password-complexity-icon.component';
 import { AuthDialogComponent } from './components/auth-dialog/auth-dialog.component';
+import { CommentsComponent } from './sock-view/comments/comments.component';
+import { CommentComponent } from './sock-view/comments/comment/comment.component';
+import { MessageInputComponent } from './sock-view/comments/message-input/message-input.component';
+import { ModalInfoComponent } from './components/modal-info/modal-info.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +50,10 @@ import { AuthDialogComponent } from './components/auth-dialog/auth-dialog.compon
     RegistrationComponent,
     PasswordComplexityIconComponent,
     AuthDialogComponent,
+    CommentsComponent,
+    CommentComponent,
+    MessageInputComponent,
+    ModalInfoComponent,
   ],
   imports: [BrowserModule, FormsModule, ReactiveFormsModule, HttpClientModule, AppRoutingModule, BrowserAnimationsModule, MatDialogModule],
   providers: [
@@ -55,6 +63,7 @@ import { AuthDialogComponent } from './components/auth-dialog/auth-dialog.compon
       multi: true,
     },
   ],
+  exports: [ModalInfoComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

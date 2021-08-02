@@ -91,6 +91,7 @@ body {
 canvas {
   width: 100% !important;
   height: 100% !important;
+  border-radius: 5px;
 }
 
 html,
@@ -101,4 +102,12 @@ body {
 body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
+
+  .bonk-goose {
+    background-color: #fef0ff;
+
+    .mat-dialog-container {
+      background-color: transparent;
+    }
+  }
 }
