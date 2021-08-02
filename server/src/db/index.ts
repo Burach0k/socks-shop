@@ -5,9 +5,7 @@ import { env } from '../environments/environments';
 export class DataBase {
   public static client = new Client({
     connectionString: env.dataBaseUrl,
-    ssl: {
-      rejectUnauthorized: false,
-    },
+    ssl: false,
   });
 
   public static parseArray(stringArray: string): any[] {

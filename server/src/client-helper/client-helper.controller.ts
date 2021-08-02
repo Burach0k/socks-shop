@@ -2,6 +2,7 @@ import { Body, Controller, Post } from '@nestjs/common';
 
 import { SendEmail, TGSendMessage } from '../dto/client-helper.dto';
 import { ClientHelperService } from './client-helper.service';
+import { Log } from '../decorators/log.decorator';
 
 @Controller('client-helper')
 export class ClientHelperController {
@@ -15,6 +16,7 @@ export class ClientHelperController {
   }
 
   @Post('updateMessage')
+  @Log()
   public updateMessage(@Body() sendEmail: TGSendMessage): boolean {
     const replyText: string = sendEmail?.message?.reply_to_message?.text;
 

@@ -15,7 +15,7 @@ export class UsersService {
 
   public getUserInfo(id: number): Promise<UsersDto> {
     return DataBase.client
-      .query(`SELECT * FROM USERS WHERE id = ${id} LIMIT 1;`, [id])
+      .query(`SELECT * FROM USERS WHERE id = $1 LIMIT 1;`, [id])
       .then(this.addRoles.bind(this));
   }
 

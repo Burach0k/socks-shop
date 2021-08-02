@@ -9,5 +9,5 @@ export const env = {
     login: process.env.EMAIL_NAME,
     password: process.env.EMAIL_PASS,
   },
-  dataBaseUrl: process.env.DATABASE_URL || 'postgres://postgres:postgres@localhost:5432/socks_shop',
+  dataBaseUrl: process.env.DATABASE_URL || 'postgres://postgres:admin@localhost:5432/socks_shop',
 };
