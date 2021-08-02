@@ -1,0 +1,7 @@
+<div class="chat">
+  <app-comment [comment]="comment" *ngFor="let comment of commentList"></app-comment>
+
+  <div style="width: 80%; margin: auto">
+    <app-message-input (onSend)='addComment($event)'></app-message-input>
+  </div>
+</div>
